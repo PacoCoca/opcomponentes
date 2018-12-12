@@ -68,7 +68,18 @@ COMMIT;
 
 
 /*SIXTO*/
+CREATE TABLE `Promociones` (
+  `idPromocion` int(11) NOT NULL,
+  `descuento` int(11) NOT NULL,
+  ADD PRIMARY KEY (`idPromocion`)
+)DEFAULT CHARSET=utf8;
 
+CREATE TABLE `Factura` (
+  `idFactura` int(11) NOT NULL,
+  `fecha` date NOT NULL,
+  ADD PRIMARY KEY (`idFactura`)
+  
+)DEFAULT CHARSET=utf8;
 
 /*MANUEL*/
 
