@@ -35,7 +35,7 @@ CREATE TABLE `Usuario` (
   `pass` text NOT NULL,
   `telefono` text,
   `direccion` text
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) DEFAULT CHARSET=utf8;
 
 --
 -- Índices para tablas volcadas
@@ -65,7 +65,22 @@ COMMIT;
 
 
 /*PACO*/
+CREATE TABLE `Producto` (
+	`idProducto` int(11) NOT NULL,
+ 	`coste` int(11) NOT NULL,
+	`cantidadMin` int(11) NOT NULL,
+	`cantidad` int(11) NOT NULL,
+	PRIMARY KEY (`idProducto`)
+) DEFAULT CHARSET=utf8;
 
+CREATE TABLE `suple` (
+	`idProducto` int(11) NOT NULL,
+	`idProveedor` int(11) NOT NULL,
+	`fecha` text NOT NULL,
+	PRIMARY KEY(`idProducto`),
+	FOREIGN KEY(`idProducto`) REFERENCES `Producto`(`idProducto`),
+	FOREIGN KEY(`idProveedor`) REFERENCES `Proveedor`(`idProveedor`)
+) DEFAULT CHARSET=utf8;
 
 /*SIXTO*/
 CREATE TABLE `Promociones` (
