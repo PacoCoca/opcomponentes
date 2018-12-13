@@ -77,10 +77,11 @@ CREATE TABLE `suple` (
 	`idProducto` int(11) NOT NULL,
 	`idProveedor` int(11) NOT NULL,
 	`fecha` text NOT NULL,
-	PRIMARY KEY(`idProducto`),
+	PRIMARY KEY(`idProducto`, `fecha`, `idProveedor`),
 	FOREIGN KEY(`idProducto`) REFERENCES `Producto`(`idProducto`),
 	FOREIGN KEY(`idProveedor`) REFERENCES `Proveedor`(`idProveedor`)
 ) DEFAULT CHARSET=utf8;
+
 
 /*SIXTO*/
 CREATE TABLE `Promociones` (
