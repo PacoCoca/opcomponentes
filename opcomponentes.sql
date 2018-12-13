@@ -77,11 +77,39 @@ CREATE TABLE `suple` (
 	`idProducto` int(11) NOT NULL,
 	`idProveedor` int(11) NOT NULL,
 	`fecha` text NOT NULL,
+	`cantidad` int(11) NOT NULL,
 	PRIMARY KEY(`idProducto`, `fecha`, `idProveedor`),
 	FOREIGN KEY(`idProducto`) REFERENCES `Producto`(`idProducto`),
 	FOREIGN KEY(`idProveedor`) REFERENCES `Proveedor`(`idProveedor`)
 ) DEFAULT CHARSET=utf8;
 
+CREATE TABLE `pedido` (
+	`idProducto` int(11) NOT NULL,
+	`idProveedor` int(11) NOT NULL,
+	`fecha` text NOT NULL,
+	`cantidad` int(11) NOT NULL,
+	PRIMARY KEY(`idProducto`, `fecha`, `idProveedor`),
+	FOREIGN KEY(`idProducto`) REFERENCES `Producto`(`idProducto`),
+	FOREIGN KEY(`idProveedor`) REFERENCES `Proveedor`(`idProveedor`)
+) DEFAULT CHARSET=utf8;
+
+CREATE TABLE `tiene` (
+	`idProducto` int(11) NOT NULL,
+	`idCatalogo` int(11) NOT NULL,
+	PRIMARY KEY(`idProducto`, `idCatalogo`),
+	FOREIGN KEY(`idProducto`) REFERENCES `Producto`(`idProducto`),
+	FOREIGN KEY(`idCatalogo`) REFERENCES `Catalogo`(`idCatalogo`)
+) DEFAULT CHARSET=utf8;
+
+CREATE TABLE `anade` (
+	`idPromocion` int(11) NOT NULL,
+	`idCatalogo` int(11) NOT NULL,
+	`fechaInicio` date NOT NULL,
+	`fechaFin` date NOT NULL,
+	PRIMARY KEY(`idPromocion`, `idCatalogo`, `fechaInicio`, `fechaFin`),
+	FOREIGN KEY(`idPromocion`) REFERENCES `Promociones`(`idPromocion`),
+	FOREIGN KEY(`idCatalogo`) REFERENCES `Catalogo`(`idCatalogo`)
+) DEFAULT CHARSET=utf8;
 
 /*SIXTO*/
 CREATE TABLE `Promociones` (
