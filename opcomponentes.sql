@@ -63,26 +63,28 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 
-
-/*PACO*/
-CREATE TABLE `Producto` (
-	`idProducto` int(11) NOT NULL,
+CREATE TABLE `Producto_suple` (
+	`idProducto` int(11) NOT NULL AUTO_INCREMENT,
+	`idProveedor` int(11) NOT NULL ,
  	`coste` int(11) NOT NULL,
 	`cantidadMin` int(11) NOT NULL,
-	`cantidad` int(11) NOT NULL,
-	PRIMARY KEY (`idProducto`)
-) DEFAULT CHARSET=utf8;
-
-CREATE TABLE `suple` (
-	`idProducto` int(11) NOT NULL,
-	`idProveedor` int(11) NOT NULL,
-	`fecha` text NOT NULL,
-	PRIMARY KEY(`idProducto`),
-	FOREIGN KEY(`idProducto`) REFERENCES `Producto`(`idProducto`),
+	`cantidadsuple` int(11) NOT NULL,
+	`cantidadProducto` int(11) NOT NULL,
+	PRIMARY KEY (`idProducto`),
 	FOREIGN KEY(`idProveedor`) REFERENCES `Proveedor`(`idProveedor`)
+
 ) DEFAULT CHARSET=utf8;
 
-/*SIXTO*/
+CREATE TABLE `Catalogo_tiene` (
+	`idCatalogo` int(11) NOT NULL AUTO_INCREMENT,
+	`idProducto` int(11) NOT NULL ,
+ 	`precio` int(11) NOT NULL,
+	`descripcion` int(11) NOT NULL,
+	PRIMARY KEY (`idCatalogo`),
+	FOREIGN KEY(`idProducto`) REFERENCES `Producto_suple`(`idProducto`)
+
+) DEFAULT CHARSET=utf8;
+
 CREATE TABLE `Promociones` (
   `idPromocion` int(11) NOT NULL,
   `descuento` int(11) NOT NULL,
@@ -96,29 +98,6 @@ CREATE TABLE `Factura` (
   
 )DEFAULT CHARSET=utf8;
 
-/*MANUEL*/
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Base de datos: `opcomponentes`
---
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `Usuario`
---
-
 CREATE TABLE `Proveedor` (
   `idProveedor` int(11) NOT NULL,
   `nombre` text NOT NULL,
@@ -128,34 +107,66 @@ CREATE TABLE `Proveedor` (
   `direccion` text
 )  DEFAULT CHARSET=utf8;
 
---
--- Índices para tablas volcadas
---
-
---
--- Indices de la tabla `Usuario`
---
 ALTER TABLE `Proveedor`
   ADD PRIMARY KEY (`idProveedor`),
   ADD UNIQUE KEY `correo` (`correo`);
 
---
--- AUTO_INCREMENT de las tablas volcadas
---
-
---
--- AUTO_INCREMENT de la tabla `Usuario`
---
 ALTER TABLE `Proveedor`
   MODIFY `idProveedor` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
+CREATE TABLE `Pedido` (
+  `fecha` date NOT NULL,
+  `idProducto` int(11) NOT NULL,
+  `idProveedor` int(11) NOT NULL,
+  `cantidad` int(11) NOT NULL,
+  ADD PRIMARY KEY (`fecha`),
+  ADD PRIMARY KEY (`idProducto`),
+  ADD PRIMARY KEY (`idProveedor`),
+  FOREIGN KEY(`idProducto`) REFERENCES `Producto_suple`(`idProducto`),
+  FOREIGN KEY(`idProveedor`) REFERENCES `Proveedor`(`idProveedor`)
+)DEFAULT CHARSET=utf8;
+
+CREATE TABLE `Anade` (
+  `fechaInicio` date NOT NULL,
+  `fechaFin` date NOT NULL,
+  `idPromocion` int(11) NOT NULL,
+  `idCatalogo` int(11) NOT NULL,
+  ADD PRIMARY KEY (`fechaInicio`),
+  ADD PRIMARY KEY (`fechaFin`),
+  ADD PRIMARY KEY (`idProducto`),
+  ADD PRIMARY KEY (`idCatalogo`),
+  FOREIGN KEY(`idPromocion`) REFERENCES `Promociones`(`idPromocion`),
+  FOREIGN KEY(`idCatalogo`) REFERENCES `Catalogo`(`idCatalogo`)
+)DEFAULT CHARSET=utf8;
+
+CREATE TABLE `compra` (
+  `fecha` date NOT NULL,
+  `idUsuario` int(11) NOT NULL,
+  `idProducto` int(11) NOT NULL,
+  `cantidad` int(11) NOT NULL,
+  ADD PRIMARY KEY (`fecha`),
+  ADD PRIMARY KEY (`idUsuario`),
+  ADD PRIMARY KEY (`idProducto`),
+  FOREIGN KEY(`idUsuario`) REFERENCES `Usuario`(`idUsuario`),
+  FOREIGN KEY(`idProducto`) REFERENCES `Producto`(`idProducto`)
+)DEFAULT CHARSET=utf8;
+
+CREATE TABLE `genera` (
+  `fecha` date NOT NULL,
+  `idUsuario` int(11) NOT NULL,
+  `idProducto` int(11) NOT NULL,
+  `idFactura` int(11) NOT NULL,
+  ADD PRIMARY KEY (`fecha`),
+  ADD PRIMARY KEY (`idUsuario`),
+  ADD PRIMARY KEY (`idProducto`),
+  ADD PRIMARY KEY (`idFactura`),
+  FOREIGN KEY(`idUsuario`) REFERENCES `Usuario`(`idUsuario`),
+  FOREIGN KEY(`idProducto`) REFERENCES `Producto`(`idProducto`),
+  FOREIGN KEY(`idFactura`) REFERENCES `Factura`(`idFactura`)
+)DEFAULT CHARSET=utf8;
+
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-
-/*EUGENIO*/
-
-
-/*GONZALO*/
-
