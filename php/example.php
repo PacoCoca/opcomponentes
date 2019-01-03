@@ -1,6 +1,7 @@
 <?php
 
 include 'connection.php';
+echo "Cholaaaaaaaaa";
  
 $conn = openCon();
  
