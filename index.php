@@ -1,4 +1,14 @@
-<!DOCTYPE html>
+<?php
+include 'sesion.php';
+ //$_SESSION['$user']; debe ir despues de session start
+$sesion = new Cookies();
+$usuario = $sesion->obtenerUsuario();
+//echo "hola: $usuario ";
+//if($usuario != ""){
+//	echo "Ahi esta el usuario: $usuario ";
+//}
+
+?>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -23,7 +33,6 @@
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
 </head><!--/head-->
-
 <body>
 	<header id="header"><!--header-->
 		<div class="header_top"><!--header_top-->
@@ -57,7 +66,7 @@
 				<div class="row">
 					<div class="col-sm-4">
 						<div class="logo pull-left">
-							<a href="index.html"><img src="images/home/logo.png"  height="70" alt="" /></a>
+							<a href="index.php"><img src="images/home/logo.png"  height="70" alt="" /></a>
 						</div>
 					</div>
 					<div class="col-sm-8">
@@ -87,7 +96,7 @@
 						</div>
 						<div class="mainmenu pull-left">
 							<ul class="nav navbar-nav collapse navbar-collapse">
-								<li><a href="index.html" class="active">Home</a></li>
+								<li><a href="index.php" class="active">Home</a></li>
 								<li class="dropdown"><a href="#">Tienda<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
                                         <li><a href="shop.html">Productos</a></li> 
@@ -569,9 +578,9 @@
 					</div>
 					<div class="col-sm-3 col-sm-offset-1">
 						<div class="single-widget">
-							<h2>Sobre la tienda</h2>
+							<h2>Suscríbete</h2>
 							<form action="#" class="searchform">
-								<input type="text" placeholder="Tu correo eléctronico" />
+								<input type="text" placeholder="Tu correo electrónico" />
 								<button type="submit" class="btn btn-default"><i class="fa fa-arrow-circle-o-right"></i></button>
 								<p>Recibe instantáneamente las novedades <br />de nuestra tienda...</p>
 							</form>

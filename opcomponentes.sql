@@ -88,18 +88,17 @@ CREATE TABLE `Catalogo_tiene` (
 CREATE TABLE `Promociones` (
   `idPromocion` int(11) NOT NULL,
   `descuento` int(11) NOT NULL,
-  ADD PRIMARY KEY (`idPromocion`)
-)DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`idPromocion`)
+) DEFAULT CHARSET=utf8;
 
 CREATE TABLE `Factura` (
   `idFactura` int(11) NOT NULL,
   `fecha` date NOT NULL,
-  ADD PRIMARY KEY (`idFactura`)
-  
-)DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`idFactura`)
+) DEFAULT CHARSET=utf8;
 
 CREATE TABLE `Proveedor` (
-  `idProveedor` int(11) NOT NULL,
+  `idProveedor` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` text NOT NULL,
   `correo` varchar(100) NOT NULL,
   `CIF` text NOT NULL,
@@ -126,6 +125,12 @@ CREATE TABLE `Pedido` (
   FOREIGN KEY(`idProducto`) REFERENCES `Producto_suple`(`idProducto`),
   FOREIGN KEY(`idProveedor`) REFERENCES `Proveedor`(`idProveedor`)
 )DEFAULT CHARSET=utf8;
+
+  `direccion` text,
+  PRIMARY KEY (`idProveedor`),
+  UNIQUE KEY `correo` (`correo`)
+) DEFAULT CHARSET=utf8;
+
 
 CREATE TABLE `Anade` (
   `fechaInicio` date NOT NULL,
