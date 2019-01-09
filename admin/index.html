@@ -4,9 +4,10 @@
 	<meta charset="utf-8">
 	<title>Administración | OPComponentes</title>
 
-	<link href="../css/main.css" rel="stylesheet">
+	<link href='../css/mb.containerPlus.css' rel='stylesheet' type='text/css'>
 	<link href="../css/bootstrap.min.css" rel="stylesheet">
-
+	<link href="../css/main.css" rel="stylesheet">
+	
 	<link rel="shortcut icon" href="../images/home/logo.png">
 </head>
 <body>
@@ -17,22 +18,22 @@
 				<div class="panel-group category-products" id="accordian">
 					<div class="panel panel-default">
 						<div class="panel-heading">
-							<h4 class="panel-title"><a href="#">Catálogo</a></h4>
+							<h4 class="panel-title"><a href="#" onclick="openContainer('Catalogo')">Catálogo</a></h4>
 						</div>
 					</div>
 					<div class="panel panel-default">
 						<div class="panel-heading">
-							<h4 class="panel-title"><a href="#">Productos</a></h4>
+							<h4 class="panel-title"><a href="#" onclick="openContainer('Productos')">Productos</a></h4>
 						</div>
 					</div>
 					<div class="panel panel-default">
 						<div class="panel-heading">
-							<h4 class="panel-title"><a href="#">Promociones</a></h4>
+							<h4 class="panel-title"><a href="#" onclick="openContainer('Promociones')">Promociones</a></h4>
 						</div>
 					</div>
 					<div class="panel panel-default">
 						<div class="panel-heading">
-							<h4 class="panel-title"><a href="#">Proveedores</a></h4>
+							<h4 class="panel-title"><a href="#" onclick="openContainer('Proveedores')">Proveedores</a></h4>
 						</div>
 					</div>
 				</div>
@@ -44,9 +45,94 @@
 		</div>
 	</div>
 
+	<div id="Catalogo" class="container containerPlus" style="position: absolute; top:30px; left: 20px; width:80%; height: 80%; opacity:1" data-drag=true data-resize=false data-collapsable=true data-close=true data-containment="document" data-buttons="fullscreen,close" data-autoresize="false">
+		<h2>Catálogo</h2>
+		<div class="row">
+			<table >
+				<thead>
+					<tr>
+						<th>Nombre</th>
+						<th>idProducto</th>
+						<th>Precio</th>
+						<th colspan="2">Descripcion</th>
+					</tr>
+				</thead>
+				<tbody id="bodyTableCatalogo">
+
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<div id="Productos" class="container containerPlus" style="position: absolute; top:30px; left: 20px; width:80%; height: 80%; opacity:1" data-drag=true data-resize=false data-collapsable=true data-close=true data-containment="document" data-buttons="fullscreen,close" data-autoresize="false">
+		<h2>Productos</h2>
+		<div class="row">
+			<table >
+				<thead>
+					<tr>
+						<th>Nombre</th>
+						<th>idProducto</th>
+						<th>idProveedor</th>
+						<th>Coste</th>
+						<th>Cantidad</th>
+						<th>Cantidad min</th>
+						<th colspan="2">Cantidad suplir</th>
+					</tr>
+				</thead>
+				<tbody id="bodyTableProducto">
+					
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<div id="Promociones" class="container containerPlus" style="position: absolute; top:30px; left: 20px; width:80%; height: 80%; opacity:1" data-drag=true data-resize=false data-collapsable=true data-close=true data-containment="document" data-buttons="fullscreen,close" data-autoresize="false">
+		<h2>Promociones</h2>
+		<div class="row">
+			<table >
+				<thead>
+					<tr>
+						<th>Descuento</th>
+						<th>Fecha Inicio</th>
+						<th colspan="2">Fecha Fin</th>
+					</tr>
+				</thead>
+				<tbody id="bodyTablePromocion">
+					
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<div id="Proveedores" class="container containerPlus" style="position: absolute; top:30px; left: 20px; width:80%; height: 80%; opacity:1" data-drag=true data-resize=false data-collapsable=true data-close=true data-containment="document" data-buttons="fullscreen,close" data-autoresize="false">
+		<h2>Proveedores</h2>
+		<div class="row">
+			<table >
+				<thead>
+					<tr>
+						<th>Nombre</th>
+						<th>idProducto</th>
+						<th>idProveedor</th>
+						<th>Coste</th>
+						<th>Cantidad</th>
+						<th>Cantidad min</th>
+						<th colspan="2">Cantidad suplir</th>
+					</tr>
+				</thead>
+				<tbody id="bodyTableProducto">
+					
+				</tbody>
+			</table>
+		</div>
+	</div>
 	<!-- Javascript scripts -->
-	<script src="../js/jquery.js"></script>
+	<script type="text/javascript" src="../js/jquery.js"></script>
 	<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+	
+	<script type="text/javascript" src="../js/jquery-ui.min.js"></script>
+	<script src="../js/jquery.mb.containerPlus.js"></script>
+	<script src="../js/mb.containerPlus.plugins.js"></script>
+
 	<script type="text/javascript" src="../js/admin.js"></script>
 </body>
 </html>

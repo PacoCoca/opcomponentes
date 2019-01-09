@@ -2550,3 +2550,21 @@ h2.title {
 .contact-info .social-networks ul li a:hover{
   color: #FE980F;
 }
+
+/* Relacionado a containerPlus*/
+.containerPlus {
+  padding-right: 0px !important;
+  padding-left: 0px !important;
+}
+
+.containerPlus table{
+  width: 100%;
+}
+
+.containerPlus table, th, td{
+  border: 1px solid black;
+}
+
+.containerPlus th, td{
+  padding-left: 10px;
+}
