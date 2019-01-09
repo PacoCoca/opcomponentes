@@ -24,44 +24,32 @@ SET time_zone = "+00:00";
 
 -- --------------------------------------------------------
 
---
--- Estructura de tabla para la tabla `Usuario`
---
 
 CREATE TABLE `Usuario` (
-  `idUsuario` int(11) NOT NULL,
+  `idUsuario` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` text NOT NULL,
   `correo` varchar(100) NOT NULL,
   `pass` text NOT NULL,
   `telefono` text,
-  `direccion` text
+  `direccion` text,
+  PRIMARY KEY(`idUsuario`),
+  UNIQUE KEY `correo` (`correo`)
 ) DEFAULT CHARSET=utf8;
-
---
--- Índices para tablas volcadas
---
-
---
--- Indices de la tabla `Usuario`
---
-ALTER TABLE `Usuario`
-  ADD PRIMARY KEY (`idUsuario`),
-  ADD UNIQUE KEY `correo` (`correo`);
-
---
--- AUTO_INCREMENT de las tablas volcadas
---
-
---
--- AUTO_INCREMENT de la tabla `Usuario`
---
-ALTER TABLE `Usuario`
-  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT;
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+CREATE TABLE `Proveedor` (
+  `idProveedor` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` text NOT NULL,
+  `correo` varchar(100) NOT NULL,
+  `CIF` text NOT NULL,
+  `telefono` text,
+  `direccion` text,
+  PRIMARY KEY(idProveedor),
+  UNIQUE KEY `correo` (`correo`)
+)  DEFAULT CHARSET=utf8;
 
 CREATE TABLE `Producto_suple` (
 	`idProducto` int(11) NOT NULL AUTO_INCREMENT,
@@ -97,52 +85,24 @@ CREATE TABLE `Factura` (
   PRIMARY KEY (`idFactura`)
 ) DEFAULT CHARSET=utf8;
 
-CREATE TABLE `Proveedor` (
-  `idProveedor` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre` text NOT NULL,
-  `correo` varchar(100) NOT NULL,
-  `CIF` text NOT NULL,
-  `telefono` text,
-  `direccion` text
-)  DEFAULT CHARSET=utf8;
-
-ALTER TABLE `Proveedor`
-  ADD PRIMARY KEY (`idProveedor`),
-  ADD UNIQUE KEY `correo` (`correo`);
-
-ALTER TABLE `Proveedor`
-  MODIFY `idProveedor` int(11) NOT NULL AUTO_INCREMENT;
-COMMIT;
-
 CREATE TABLE `Pedido` (
   `fecha` date NOT NULL,
   `idProducto` int(11) NOT NULL,
   `idProveedor` int(11) NOT NULL,
   `cantidad` int(11) NOT NULL,
-  ADD PRIMARY KEY (`fecha`),
-  ADD PRIMARY KEY (`idProducto`),
-  ADD PRIMARY KEY (`idProveedor`),
+  PRIMARY KEY (`fecha`, `idProducto`, `idProveedor`),
   FOREIGN KEY(`idProducto`) REFERENCES `Producto_suple`(`idProducto`),
   FOREIGN KEY(`idProveedor`) REFERENCES `Proveedor`(`idProveedor`)
 )DEFAULT CHARSET=utf8;
-
-  `direccion` text,
-  PRIMARY KEY (`idProveedor`),
-  UNIQUE KEY `correo` (`correo`)
-) DEFAULT CHARSET=utf8;
-
 
 CREATE TABLE `Anade` (
   `fechaInicio` date NOT NULL,
   `fechaFin` date NOT NULL,
   `idPromocion` int(11) NOT NULL,
   `idCatalogo` int(11) NOT NULL,
-  ADD PRIMARY KEY (`fechaInicio`),
-  ADD PRIMARY KEY (`fechaFin`),
-  ADD PRIMARY KEY (`idProducto`),
-  ADD PRIMARY KEY (`idCatalogo`),
+  PRIMARY KEY (`fechaInicio`, `fechaFin`, `idCatalogo`),
   FOREIGN KEY(`idPromocion`) REFERENCES `Promociones`(`idPromocion`),
-  FOREIGN KEY(`idCatalogo`) REFERENCES `Catalogo`(`idCatalogo`)
+  FOREIGN KEY(`idCatalogo`) REFERENCES `Catalogo_tiene`(`idCatalogo`)
 )DEFAULT CHARSET=utf8;
 
 CREATE TABLE `compra` (
@@ -150,11 +110,9 @@ CREATE TABLE `compra` (
   `idUsuario` int(11) NOT NULL,
   `idProducto` int(11) NOT NULL,
   `cantidad` int(11) NOT NULL,
-  ADD PRIMARY KEY (`fecha`),
-  ADD PRIMARY KEY (`idUsuario`),
-  ADD PRIMARY KEY (`idProducto`),
+  PRIMARY KEY (`fecha`, `idUsuario`, `idProducto`),
   FOREIGN KEY(`idUsuario`) REFERENCES `Usuario`(`idUsuario`),
-  FOREIGN KEY(`idProducto`) REFERENCES `Producto`(`idProducto`)
+  FOREIGN KEY(`idProducto`) REFERENCES `Producto_suple`(`idProducto`)
 )DEFAULT CHARSET=utf8;
 
 CREATE TABLE `genera` (
@@ -162,12 +120,9 @@ CREATE TABLE `genera` (
   `idUsuario` int(11) NOT NULL,
   `idProducto` int(11) NOT NULL,
   `idFactura` int(11) NOT NULL,
-  ADD PRIMARY KEY (`fecha`),
-  ADD PRIMARY KEY (`idUsuario`),
-  ADD PRIMARY KEY (`idProducto`),
-  ADD PRIMARY KEY (`idFactura`),
+  PRIMARY KEY (`fecha`, `idUsuario`, `idProducto`, `idFactura`),
   FOREIGN KEY(`idUsuario`) REFERENCES `Usuario`(`idUsuario`),
-  FOREIGN KEY(`idProducto`) REFERENCES `Producto`(`idProducto`),
+  FOREIGN KEY(`idProducto`) REFERENCES `Producto_suple`(`idProducto`),
   FOREIGN KEY(`idFactura`) REFERENCES `Factura`(`idFactura`)
 )DEFAULT CHARSET=utf8;
 
