@@ -58,6 +58,7 @@ CREATE TABLE `Producto_suple` (
 	`cantidadMin` int(11) NOT NULL,
 	`cantidadsuple` int(11) NOT NULL,
 	`cantidadProducto` int(11) NOT NULL,
+  `nombre` text,
 	PRIMARY KEY (`idProducto`),
 	FOREIGN KEY(`idProveedor`) REFERENCES `Proveedor`(`idProveedor`)
 
@@ -68,6 +69,7 @@ CREATE TABLE `Catalogo_tiene` (
 	`idProducto` int(11) NOT NULL ,
  	`precio` int(11) NOT NULL,
 	`descripcion` int(11) NOT NULL,
+  `nombre` text,
 	PRIMARY KEY (`idCatalogo`),
 	FOREIGN KEY(`idProducto`) REFERENCES `Producto_suple`(`idProducto`)
 
@@ -90,6 +92,7 @@ CREATE TABLE `Pedido` (
   `idProducto` int(11) NOT NULL,
   `idProveedor` int(11) NOT NULL,
   `cantidad` int(11) NOT NULL,
+  `estado` text,
   PRIMARY KEY (`fecha`, `idProducto`, `idProveedor`),
   FOREIGN KEY(`idProducto`) REFERENCES `Producto_suple`(`idProducto`),
   FOREIGN KEY(`idProveedor`) REFERENCES `Proveedor`(`idProveedor`)
