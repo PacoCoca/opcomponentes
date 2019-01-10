@@ -3,8 +3,9 @@ function openCon(){
 	$dbhost = "localhost";
 	$db = "opcomponentes";
 
-	$conn = new mysqli($dbhost, $db) or die("Connect failed: %s\n". $conn -> error);
-
+	$conn = mysqli_connect($dbhost,'root','',$db);
+	mysqli_set_charset($conn,'utf8');
+	
 	return $conn;
 }
 
@@ -12,4 +13,5 @@ function closeCon($conn){
 	$conn->close();
 }
 
+$conn=openCon();
 ?>
