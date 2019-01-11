@@ -68,7 +68,7 @@ CREATE TABLE `Catalogo_tiene` (
 	`idCatalogo` int(11) NOT NULL AUTO_INCREMENT,
 	`idProducto` int(11) NOT NULL ,
  	`precio` int(11) NOT NULL,
-	`descripcion` int(11) NOT NULL,
+	`descripcion` text,
   `nombre` text,
 	PRIMARY KEY (`idCatalogo`),
 	FOREIGN KEY(`idProducto`) REFERENCES `Producto_suple`(`idProducto`)
