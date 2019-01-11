@@ -4,6 +4,7 @@ include 'connection.php';
 
 $query="SELECT * FROM Producto_suple";
 $rs = mysqli_query($conn,$query);
+$array = array();
 
 if($rs){
 	$i=0;
@@ -20,6 +21,6 @@ if($rs){
 
 	echo json_encode($array);
 } else{
-	echo "noProductos";
+	echo "error";
 }
 ?>

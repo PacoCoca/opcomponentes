@@ -11,7 +11,7 @@ function cargaProductos(){
 		url: "php/cargaProductos.php",
 		type: "POST",
 		success: function(respuesta){
-			if(respuesta!="noProductos"){
+			if(respuesta != "error"){
 				var res = jQuery.parseJSON(respuesta);
 				document.getElementById("bodyTableProducto").innerHTML = "";
 				for (var i=0; i<res.length; i++) {
@@ -84,7 +84,6 @@ function elimProducto(boton){
 		data: {idProducto: idProducto},
 		cache: false,
 		success: function(respuesta){
-			console.log(respuesta);
 			if(respuesta=="correcto"){
 				cargaProductos();
 			} else{
@@ -142,7 +141,7 @@ function cargaCatalogo(){
 		url: "php/cargaCatalogo.php",
 		type: "POST",
 		success: function(respuesta){
-			if(respuesta!="noCatalogo"){
+			if(respuesta!="error"){
 				var res = jQuery.parseJSON(respuesta);
 				document.getElementById("bodyTableCatalogo").innerHTML = "";
 				for (var i=0; i<res.length; i++) {
@@ -152,7 +151,7 @@ function cargaCatalogo(){
 					row+="<td>"+fila[1]+"</td>";
 					row+="<td>"+fila[2]+"</td>";
 					row+="<td>"+fila[3]+"</td>";
-					row+="<td><button class='btn-warning' onclick='eliminaCatalogo()'><i class='fa fa-minus'></i></button> <button class='btn-success'><i class='fa fa-edit'></i></button></td>";
+					row+="<td><button class='btn-warning' onclick='eliminaCatalogo(this)'><i class='fa fa-minus'></i></button> <button class='btn-success'><i class='fa fa-edit'></i></button></td>";
 					row+="</tr>";
 	
 					document.getElementById("bodyTableCatalogo").innerHTML += row;
@@ -162,8 +161,21 @@ function cargaCatalogo(){
 	});
 }
 
-function eliminaCatalogo(){
-	document.getElementById()
+function eliminaCatalogo(boton){
+	var idProducto = (boton.parentNode.parentNode.childNodes)[1].innerText;
+	$.ajax({
+		url: "php/eliminaCatalogo.php",
+		type: "POST",
+		data: {idProducto: idProducto},
+		cache: false,
+		success: function(respuesta){
+			if(respuesta=="correcto"){
+				cargaCatalogo();
+			} else{
+				alert("Error eliminando el Catalogo");
+			}
+		}
+	});
 }
 
 function cargaProveedores(){
