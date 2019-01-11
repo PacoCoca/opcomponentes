@@ -1,10 +1,4 @@
 <!DOCTYPE html>
-<?php  
-$exito=$_GET['exito'];
-if($exito == TRUE){
-	header('Location: modales.html');
-}
-?>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -128,7 +122,7 @@ if($exito == TRUE){
 							<input type="password" name="password" placeholder="Contraseña" />
 							<span>
 								<input type="checkbox" class="checkbox"> 
-								Recordarme
+								Recuérdame
 							</span>
 							<button type="submit" name="login" class="btn btn-default">Iniciar sesión</button>
 						</form>
@@ -139,14 +133,14 @@ if($exito == TRUE){
 				</div>
 				<div class="col-sm-4">
 					<div class="signup-form"><!--CREAR USUARIO-->
-						<form action="crear_usuario.php" method="POST">
-						<h2>Crear nuevo usuario</h2>
-							<input type="user" name="nombre" placeholder="Nombre"/>
+						<form id="nuevoUsuarioForm" method="POST" enctype="multipart/form-data" >
+							<h2>Crear nuevo usuario</h2>
+							<input type="text" name="nombre" placeholder="Nombre"/>
 							<input type="email" name="correo"  placeholder="Correo electrónico"/>
 							<input type="password" name="password" placeholder="Contrasena"/>
 							<input type="text" name="telefono" placeholder="Teléfono"/>
 							<input type="text" name="direccion" placeholder="Dirección"/>
-							<button type="submit" class="btn btn-default">Crear</button>
+							<button onclick="registroNuevoUsuario();" class="btn btn-default">Crear</button>
 						</form>
 					</div><!--/sign up form-->
 				</div>
@@ -222,16 +216,13 @@ if($exito == TRUE){
 		</div>
 		
 	</footer><!--/Footer-->
-	
 
-  
-
-  
     <script src="js/jquery.js"></script>
 	<script src="js/price-range.js"></script>
     <script src="js/jquery.scrollUp.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
     <script src="js/jquery.prettyPhoto.js"></script>
     <script src="js/main.js"></script>
+    <script type="text/javascript" src="js/login.js"></script>
 </body>
 </html>

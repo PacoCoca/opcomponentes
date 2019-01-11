@@ -1,13 +1,6 @@
 <?php
-include 'sesion.php';
- //$_SESSION['$user']; debe ir despues de session start
-$sesion = new Cookies();
-$usuario = $sesion->obtenerUsuario();
-//echo "hola: $usuario ";
-//if($usuario != ""){
-//	echo "Ahi esta el usuario: $usuario ";
-//}
 
+$usuario = isset($_SESSION["usuario"]) ? $_SESSION["usuario"] : null;
 ?>
 <html lang="en">
 <head>
@@ -60,7 +53,6 @@ $usuario = $sesion->obtenerUsuario();
 				</div>
 			</div>
 		</div><!--/header_top-->
-		
 		<div class="header-middle"><!--header-middle-->
 			<div class="container">
 				<div class="row">
