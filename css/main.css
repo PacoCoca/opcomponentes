@@ -2568,3 +2568,7 @@ h2.title {
 .containerPlus th, td{
   padding-left: 10px;
 }
+
+.width50 {
+  width: 50px;
+}
