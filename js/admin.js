@@ -11,7 +11,7 @@ function cargaProductos(){
 		url: "php/cargaProductos.php",
 		type: "POST",
 		success: function(respuesta){
-			if(respuesta!="noProductos"){
+			if(respuesta != "error"){
 				var res = jQuery.parseJSON(respuesta);
 				document.getElementById("bodyTableProducto").innerHTML = "";
 				for (var i=0; i<res.length; i++) {
@@ -84,7 +84,6 @@ function elimProducto(boton){
 		data: {idProducto: idProducto},
 		cache: false,
 		success: function(respuesta){
-			console.log(respuesta);
 			if(respuesta=="correcto"){
 				cargaProductos();
 			} else{
@@ -97,12 +96,12 @@ function elimProducto(boton){
 function filaProductoMod(boton){
 	var filaArray = boton.parentNode.parentNode.childNodes;
 
-	filaArray[0].innerHTML="<input type='text' value="+filaArray[0].innerText+">";
-	filaArray[2].innerHTML="<input class='width50' type='number' value="+filaArray[2].innerText+">";
-	filaArray[3].innerHTML="<input class='width50' type='number' value="+filaArray[3].innerText+">";
-	filaArray[4].innerHTML="<input class='width50' type='number' value="+filaArray[4].innerText+">";
-	filaArray[5].innerHTML="<input class='width50' type='number' value="+filaArray[5].innerText+">";
-	filaArray[6].innerHTML="<input class='width50' type='number' value="+filaArray[6].innerText+">";
+	filaArray[0].innerHTML="<input type='text' value='"+filaArray[0].innerText+"'>";
+	filaArray[2].innerHTML="<input class='width50' type='number' value='"+filaArray[2].innerText+"'>";
+	filaArray[3].innerHTML="<input class='width50' type='number' value='"+filaArray[3].innerText+"'>";
+	filaArray[4].innerHTML="<input class='width50' type='number' value='"+filaArray[4].innerText+"'>";
+	filaArray[5].innerHTML="<input class='width50' type='number' value='"+filaArray[5].innerText+"'>";
+	filaArray[6].innerHTML="<input class='width50' type='number' value='"+filaArray[6].innerText+"'>";
 	filaArray[7].innerHTML="<button onclick='editaProducto(this);' class='btn-success'><i class='fa fa-save'></i></button>";
 }
 
@@ -110,12 +109,13 @@ function editaProducto(boton){
 	var filaArray = boton.parentNode.parentNode.childNodes;
 	var data = new Array();
 	data[0] = filaArray[0].firstChild.value;
-
+	data[6] =filaArray[1].innerText;
 	data[1] = filaArray[2].firstChild.value;
 	data[2] = filaArray[3].firstChild.value;
 	data[3] = filaArray[4].firstChild.value;
 	data[4] = filaArray[5].firstChild.value;
 	data[5] = filaArray[6].firstChild.value;
+
 
 	var dataJSON = JSON.stringify(data);
 	$.ajax({
@@ -124,6 +124,7 @@ function editaProducto(boton){
 		data: {data: dataJSON},
 		cache: false,
 		success: function(respuesta){
+		console.log(respuesta);
 			if(respuesta=="correcto"){
 				cargaProductos();
 			} else{
@@ -142,7 +143,7 @@ function cargaCatalogo(){
 		url: "php/cargaCatalogo.php",
 		type: "POST",
 		success: function(respuesta){
-			if(respuesta!="noCatalogo"){
+			if(respuesta!="error"){
 				var res = jQuery.parseJSON(respuesta);
 				document.getElementById("bodyTableCatalogo").innerHTML = "";
 				for (var i=0; i<res.length; i++) {
@@ -152,7 +153,7 @@ function cargaCatalogo(){
 					row+="<td>"+fila[1]+"</td>";
 					row+="<td>"+fila[2]+"</td>";
 					row+="<td>"+fila[3]+"</td>";
-					row+="<td><button class='btn-warning' onclick='eliminaCatalogo()'><i class='fa fa-minus'></i></button> <button class='btn-success'><i class='fa fa-edit'></i></button></td>";
+					row+="<td><button class='btn-warning' onclick='eliminaCatalogo(this)'><i class='fa fa-minus'></i></button> <button class='btn-success' onclick='filaCatalogoMod(this)'><i class='fa fa-edit'></i></button></td>";
 					row+="</tr>";
 	
 					document.getElementById("bodyTableCatalogo").innerHTML += row;
@@ -162,8 +163,90 @@ function cargaCatalogo(){
 	});
 }
 
-function eliminaCatalogo(){
-	document.getElementById()
+function eliminaCatalogo(boton){
+	var idProducto = (boton.parentNode.parentNode.childNodes)[1].innerText;
+	$.ajax({
+		url: "php/eliminaCatalogo.php",
+		type: "POST",
+		data: {idProducto: idProducto},
+		cache: false,
+		success: function(respuesta){
+			if(respuesta=="correcto"){
+				cargaCatalogo();
+			} else{
+				alert("Error eliminando el Catalogo");
+			}
+		}
+	});
+}
+
+function filaCatalogoMod(boton){
+	var filaArray = boton.parentNode.parentNode.childNodes;
+	filaArray[0].innerHTML="<input type='text' value='"+filaArray[0].innerText+"'>";
+	filaArray[2].innerHTML="<input class='width50' type='number' value='"+filaArray[2].innerText+"'>";
+	filaArray[3].innerHTML="<input type='text' value='"+filaArray[3].innerText+"'>";
+	filaArray[4].innerHTML="<button onclick='editaCatalogo(this);' class='btn-success'><i class='fa fa-save'></i></button>";
+}
+
+function editaCatalogo(boton){
+	var filaArray = boton.parentNode.parentNode.childNodes;
+	var data = new Array();
+	data[0] = filaArray[0].firstChild.value;
+	data[3] = filaArray[1].innerText;
+	data[1] = filaArray[2].firstChild.value;
+	data[2] = filaArray[3].firstChild.value;
+
+	var dataJSON = JSON.stringify(data);
+	$.ajax({
+		url: "php/editaCatalogo.php",
+		type: "POST",
+		data: {data: dataJSON},
+		cache: false,
+		success: function(respuesta){
+			console.log(respuesta);
+			if(respuesta=="correcto"){
+				cargaCatalogo();
+			} else{
+				alert("Error editando catalogo, revise los datos");
+			}
+		}
+	});
+}
+
+function nuevaFilaCatalogo(){
+	var row="";
+	row+="<td><input type='text'/></td>";
+	row+="<td><input class='width50' type='number'/></td>";
+	row+="<td><input class='width50' type='number'/></td>";
+	row+="<td><input type='text'/></td>";
+	row+="<td><button onclick='guardaCatalogo(this);' class='btn-success'><i class='fa fa-save'></i></button></td>";
+	row+="</tr>";
+
+	document.getElementById("bodyTableCatalogo").innerHTML = row + document.getElementById("bodyTableCatalogo").innerHTML;	
+}
+
+function guardaCatalogo(boton){
+	var filaArray = boton.parentNode.parentNode.childNodes;
+	var data = new Array();
+	data[0] = filaArray[0].firstChild.value;
+	data[1] = filaArray[1].firstChild.value;
+	data[2] = filaArray[2].firstChild.value;
+	data[3] = filaArray[3].firstChild.value;
+
+	var dataJSON = JSON.stringify(data);
+	$.ajax({
+		url: "php/guardaCatalogo.php",
+		type: "POST",
+		data: {data: dataJSON},
+		cache: false,
+		success: function(respuesta){
+			if(respuesta=="correcto"){
+				cargaCatalogo();
+			} else{
+				alert("Error creando el nuevo Catalogo, revise los datos");
+			}
+		}
+	});
 }
 
 function cargaProveedores(){

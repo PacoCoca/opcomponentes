@@ -3,9 +3,8 @@ include 'connection.php';
 
 $id = $_POST['idProducto'];
 
-$query = "DELETE FROM Producto_suple WHERE idProducto='$id'";
+$query = "DELETE FROM Catalogo_tiene WHERE idProducto='$id'";
 $rs = mysqli_query($conn,$query);
-
 if($rs){
   echo "correcto";
 } else{

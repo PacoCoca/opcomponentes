@@ -60,7 +60,7 @@ CREATE TABLE `Producto_suple` (
 	`cantidadProducto` int(11) NOT NULL,
   `nombre` text,
 	PRIMARY KEY (`idProducto`),
-	FOREIGN KEY(`idProveedor`) REFERENCES `Proveedor`(`idProveedor`)
+	FOREIGN KEY(`idProveedor`) REFERENCES `Proveedor`(`idProveedor`) ON DELETE CASCADE ON UPDATE CASCADE
 
 ) DEFAULT CHARSET=utf8;
 
@@ -71,7 +71,7 @@ CREATE TABLE `Catalogo_tiene` (
 	`descripcion` text,
   `nombre` text,
 	PRIMARY KEY (`idCatalogo`),
-	FOREIGN KEY(`idProducto`) REFERENCES `Producto_suple`(`idProducto`)
+	FOREIGN KEY(`idProducto`) REFERENCES `Producto_suple`(`idProducto`) ON DELETE CASCADE ON UPDATE CASCADE
 
 ) DEFAULT CHARSET=utf8;
 
@@ -94,8 +94,8 @@ CREATE TABLE `Pedido` (
   `cantidad` int(11) NOT NULL,
   `estado` text,
   PRIMARY KEY (`fecha`, `idProducto`, `idProveedor`),
-  FOREIGN KEY(`idProducto`) REFERENCES `Producto_suple`(`idProducto`),
-  FOREIGN KEY(`idProveedor`) REFERENCES `Proveedor`(`idProveedor`)
+  FOREIGN KEY(`idProducto`) REFERENCES `Producto_suple`(`idProducto`) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY(`idProveedor`) REFERENCES `Proveedor`(`idProveedor`) ON DELETE CASCADE ON UPDATE CASCADE
 )DEFAULT CHARSET=utf8;
 
 CREATE TABLE `Anade` (
@@ -104,8 +104,8 @@ CREATE TABLE `Anade` (
   `idPromocion` int(11) NOT NULL,
   `idCatalogo` int(11) NOT NULL,
   PRIMARY KEY (`fechaInicio`, `fechaFin`, `idCatalogo`),
-  FOREIGN KEY(`idPromocion`) REFERENCES `Promociones`(`idPromocion`),
-  FOREIGN KEY(`idCatalogo`) REFERENCES `Catalogo_tiene`(`idCatalogo`)
+  FOREIGN KEY(`idPromocion`) REFERENCES `Promociones`(`idPromocion`) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY(`idCatalogo`) REFERENCES `Catalogo_tiene`(`idCatalogo`) ON DELETE CASCADE ON UPDATE CASCADE 
 )DEFAULT CHARSET=utf8;
 
 CREATE TABLE `compra` (
@@ -114,8 +114,8 @@ CREATE TABLE `compra` (
   `idProducto` int(11) NOT NULL,
   `cantidad` int(11) NOT NULL,
   PRIMARY KEY (`fecha`, `idUsuario`, `idProducto`),
-  FOREIGN KEY(`idUsuario`) REFERENCES `Usuario`(`idUsuario`),
-  FOREIGN KEY(`idProducto`) REFERENCES `Producto_suple`(`idProducto`)
+  FOREIGN KEY(`idUsuario`) REFERENCES `Usuario`(`idUsuario`) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY(`idProducto`) REFERENCES `Producto_suple`(`idProducto`) ON DELETE CASCADE ON UPDATE CASCADE
 )DEFAULT CHARSET=utf8;
 
 CREATE TABLE `genera` (
@@ -124,9 +124,9 @@ CREATE TABLE `genera` (
   `idProducto` int(11) NOT NULL,
   `idFactura` int(11) NOT NULL,
   PRIMARY KEY (`fecha`, `idUsuario`, `idProducto`, `idFactura`),
-  FOREIGN KEY(`idUsuario`) REFERENCES `Usuario`(`idUsuario`),
-  FOREIGN KEY(`idProducto`) REFERENCES `Producto_suple`(`idProducto`),
-  FOREIGN KEY(`idFactura`) REFERENCES `Factura`(`idFactura`)
+  FOREIGN KEY(`idUsuario`) REFERENCES `Usuario`(`idUsuario`) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY(`idProducto`) REFERENCES `Producto_suple`(`idProducto`) ON DELETE CASCADE ON UPDATE CASCADE,
+  FOREIGN KEY(`idFactura`) REFERENCES `Factura`(`idFactura`) ON DELETE CASCADE ON UPDATE CASCADE
 )DEFAULT CHARSET=utf8;
 
 
