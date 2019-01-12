@@ -76,7 +76,7 @@ CREATE TABLE `Catalogo_tiene` (
 ) DEFAULT CHARSET=utf8;
 
 CREATE TABLE `Promociones` (
-  `idPromocion` int(11) NOT NULL,
+  `idPromocion` int(11) NOT NULL AUTO_INCREMENT,
   `descuento` int(11) NOT NULL,
   PRIMARY KEY (`idPromocion`)
 ) DEFAULT CHARSET=utf8;

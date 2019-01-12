@@ -46,7 +46,7 @@
 		</div>
 	</div>
 
-	<div id="Catalogo" class="container containerPlus" style="position: absolute; top:30px; left: 20px; width:80%; height: 80%; opacity:1" data-drag=true data-resize=false data-collapsable=true data-close=true data-containment="document" data-buttons="fullscreen,close" data-autoresize="false">
+	<div id="Catalogo" class="container containerPlus" style="position: absolute; top:30px; left: 20px; width:80%; height: 100%; opacity:1" data-drag=true data-resize=true data-collapsable=true data-close=true data-containment="document" data-buttons="fullscreen,close" data-autoresize="false">
 		<h2>Catálogo</h2>
 		<div class="row">
 			<button onclick="nuevaFilaCatalogo();">Nuevo Producto Catalogo</button> 
@@ -67,7 +67,7 @@
 		</div>
 	</div>
 
-	<div id="Productos" class="container containerPlus" style="position: absolute; top:30px; left: 20px; width:80%; height: 80%; opacity:1" data-drag=true data-resize=true data-collapsable=true data-close=true data-containment="document" data-buttons="fullscreen,close" data-autoresize="false">
+	<div id="Productos" class="container containerPlus" style="position: absolute; top:30px; left: 20px; width:80%; height: 100%; opacity:1" data-drag=true data-resize=true data-collapsable=true data-close=true data-containment="document" data-buttons="fullscreen,close" data-autoresize="false">
 		<h2>Productos</h2>
 		<div class="row">
 			<button onclick="nuevaFilaProducto();">Nuevo Producto</button> 
@@ -91,13 +91,16 @@
 		</div>
 	</div>
 
-	<div id="Promociones" class="container containerPlus" style="position: absolute; top:30px; left: 20px; width:80%; height: 80%; opacity:1" data-drag=true data-resize=false data-collapsable=true data-close=true data-containment="document" data-buttons="fullscreen,close" data-autoresize="false">
+	<div id="Promociones" class="container containerPlus" style="position: absolute; top:30px; left: 20px; width:80%; height: 100%; opacity:1" data-drag=true data-resize=true data-collapsable=true data-close=true data-containment="document" data-buttons="fullscreen,close" data-autoresize="false">
 		<h2>Promociones</h2>
 		<div class="row">
+			<button onclick="nuevaFilaPromocion();">Nueva Promocion</button> 
+			<div style="clear:both;"><br></div>
 			<table >
 				<thead>
 					<tr>
 						<th>Descuento</th>
+						<th>idCatalogo</th>
 						<th>Fecha Inicio</th>
 						<th colspan="2">Fecha Fin</th>
 					</tr>
@@ -109,7 +112,7 @@
 		</div>
 	</div>
 
-	<div id="Proveedores" class="container containerPlus" style="position: absolute; top:30px; left: 20px; width:80%; height: 80%; opacity:1" data-drag=true data-resize=false data-collapsable=true data-close=true data-containment="document" data-buttons="fullscreen,close" data-autoresize="false">
+	<div id="Proveedores" class="container containerPlus" style="position: absolute; top:30px; left: 20px; width:80%; height: 100%; opacity:1" data-drag=true data-resize=true data-collapsable=true data-close=true data-containment="document" data-buttons="fullscreen,close" data-autoresize="false">
 		<h2>Proveedores</h2>
 		<div class="row">
 			<table >

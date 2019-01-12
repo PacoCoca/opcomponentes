@@ -2572,3 +2572,8 @@ h2.title {
 .width50 {
   width: 50px;
 }
+
+.inputOculto {
+  background: inherit;
+  border: none;
+}
