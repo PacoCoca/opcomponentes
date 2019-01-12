@@ -133,7 +133,121 @@ function editaProducto(boton){
 }
 
 function cargaPromociones(){
+	$.ajax({
+		url: "php/cargaPromociones.php",
+		type: "POST",
+		success: function(respuesta){
+			if(respuesta != "error"){
+				var res = jQuery.parseJSON(respuesta);
+				document.getElementById("bodyTablePromocion").innerHTML = "";
+				for (var i=0; i<res.length; i++) {
+					var fila = res[i];
+					var row="<tr id='"+fila[4]+"'>";
+					row+="<td>"+fila[0]+"</td>";
+					row+="<td>"+fila[1]+"</td>";
+					row+="<td><input value='"+fila[2]+"' class='inputOculto' type='date' readonly /></td>";
+					row+="<td><input value='"+fila[3]+"' class='inputOculto' type='date' readonly /></td>";
+					row+="<td><button class='btn-warning' onclick='elimPromocion(this);'><i class='fa fa-minus'></i></button> <button onclick='filaPromocionMod(this);' class='btn-success'><i class='fa fa-edit'></i></button></td>";
+					row+="</tr>";
 	
+					document.getElementById("bodyTablePromocion").innerHTML += row;
+				}
+			}
+		}
+	});
+}
+
+function nuevaFilaPromocion(){
+	var row="";
+	row+="<td><input class='width50' type='number'/></td>";
+	row+="<td><input class='width50' type='number'/></td>";
+	row+="<td><input type='date'/></td>";
+	row+="<td><input type='date'/></td>";
+	row+="<td><button onclick='guardaPromocion(this);' class='btn-success'><i class='fa fa-save'></i></button></td>";
+	row+="</tr>";
+
+	document.getElementById("bodyTablePromocion").innerHTML = row + document.getElementById("bodyTablePromocion").innerHTML;
+}
+
+function guardaPromocion(boton){
+	var filaArray = boton.parentNode.parentNode.childNodes;
+	var data = new Array();
+	data[0] = filaArray[0].firstChild.value;
+	data[1] = filaArray[1].firstChild.value;
+	data[2] = filaArray[2].firstChild.value;
+	data[3] = filaArray[3].firstChild.value;
+
+	var dataJSON = JSON.stringify(data);
+	$.ajax({
+		url: "php/guardaPromocion.php",
+		type: "POST",
+		data: {data: dataJSON},
+		cache: false,
+		success: function(respuesta){
+			if(respuesta=="correcto"){
+				cargaPromociones();
+			} else{
+				alert("Error creando la nueva Promocion, revise los datos");
+			}
+		}
+	});
+}
+
+function elimPromocion(boton){
+	var idPromocion = boton.parentNode.parentNode.id;
+	$.ajax({
+		url: "php/eliminaPromocion.php",
+		type: "POST",
+		data: {idPromocion: idPromocion},
+		cache: false,
+		success: function(respuesta){
+			if(respuesta=="correcto"){
+				cargaPromociones();
+			} else{
+				alert("Error eliminando la promoción");
+			}
+		}
+	});
+}
+
+function filaPromocionMod(boton){
+	var filaArray = boton.parentNode.parentNode.childNodes;
+
+	filaArray[0].innerHTML="<input class='width50' type='number' value="+filaArray[0].innerText+">";
+	filaArray[1].innerHTML="<input class='width50' type='number' value="+filaArray[1].innerText+">";
+
+	filaArray[2].firstChild.removeAttribute('readonly');
+	filaArray[2].firstChild.removeAttribute('class');
+	filaArray[3].firstChild.removeAttribute('readonly');
+	filaArray[3].firstChild.removeAttribute('class');
+
+	filaArray[4].innerHTML="<button onclick='editaPromocion(this);' class='btn-success'><i class='fa fa-save'></i></button>";
+}
+
+function editaPromocion(boton){
+	var filaArray = boton.parentNode.parentNode.childNodes;
+	var data = new Array();
+	data[0] = filaArray[0].firstChild.value;
+
+	data[1] = filaArray[1].firstChild.value;
+	data[2] = filaArray[2].firstChild.value;
+	data[3] = filaArray[3].firstChild.value;
+	data[4] = boton.parentNode.parentNode.id;
+
+	var dataJSON = JSON.stringify(data);
+	$.ajax({
+		url: "php/editaPromocion.php",
+		type: "POST",
+		data: {data: dataJSON},
+		cache: false,
+		success: function(respuesta){
+			if(respuesta=="correcto"){
+				cargaPromociones();
+			} else{
+				alert("Error editando promoción, revise los datos");
+			}
+		}
+	});
 }
 
 function cargaCatalogo(){
