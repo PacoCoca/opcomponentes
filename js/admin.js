@@ -267,6 +267,13 @@ function cargaCatalogo(){
 					row+="<td>"+fila[1]+"</td>";
 					row+="<td>"+fila[2]+"</td>";
 					row+="<td>"+fila[3]+"</td>";
+					row+="<td>"+fila[4]+"</td>";
+					row+="<td>"+fila[5]+"</td>";
+					if(fila[6]==1){
+						row+="<td>Si</td>";
+					}else{
+						row+="<td>No</td>";
+					}
 					row+="<td><button class='btn-warning' onclick='eliminaCatalogo(this)'><i class='fa fa-minus'></i></button> <button class='btn-success' onclick='filaCatalogoMod(this)'><i class='fa fa-edit'></i></button></td>";
 					row+="</tr>";
 	
@@ -299,7 +306,10 @@ function filaCatalogoMod(boton){
 	filaArray[0].innerHTML="<input type='text' value='"+filaArray[0].innerText+"'>";
 	filaArray[2].innerHTML="<input class='width50' type='number' value='"+filaArray[2].innerText+"'>";
 	filaArray[3].innerHTML="<input type='text' value='"+filaArray[3].innerText+"'>";
-	filaArray[4].innerHTML="<button onclick='editaCatalogo(this);' class='btn-success'><i class='fa fa-save'></i></button>";
+	filaArray[4].innerHTML="<input type='text' value='"+filaArray[4].innerText+"'>";
+	filaArray[5].innerHTML="<input type='text' value='"+filaArray[5].innerText+"'>";
+	filaArray[6].innerHTML="<input type='text' value='"+filaArray[6].innerText+"'>";
+	filaArray[7].innerHTML="<button onclick='editaCatalogo(this);' class='btn-success'><i class='fa fa-save'></i></button>";
 }
 
 function editaCatalogo(boton){
@@ -309,6 +319,15 @@ function editaCatalogo(boton){
 	data[3] = filaArray[1].innerText;
 	data[1] = filaArray[2].firstChild.value;
 	data[2] = filaArray[3].firstChild.value;
+	data[4] = filaArray[4].firstChild.value;
+	data[5] = filaArray[5].firstChild.value;
+	data[6] = filaArray[6].firstChild.value;
+
+	if(data[6].toUpperCase() == "SI" ){
+		data[6] = 1;
+	}else{
+		data[6] = 0;
+	}
 
 	var dataJSON = JSON.stringify(data);
 	$.ajax({
@@ -317,7 +336,6 @@ function editaCatalogo(boton){
 		data: {data: dataJSON},
 		cache: false,
 		success: function(respuesta){
-			console.log(respuesta);
 			if(respuesta=="correcto"){
 				cargaCatalogo();
 			} else{
@@ -333,6 +351,9 @@ function nuevaFilaCatalogo(){
 	row+="<td><input class='width50' type='number'/></td>";
 	row+="<td><input class='width50' type='number'/></td>";
 	row+="<td><input type='text'/></td>";
+	row+="<td><input type='text'/></td>";
+	row+="<td><input type='text'/></td>";
+	row+="<td><input type='text'/></td>";
 	row+="<td><button onclick='guardaCatalogo(this);' class='btn-success'><i class='fa fa-save'></i></button></td>";
 	row+="</tr>";
 
@@ -346,6 +367,14 @@ function guardaCatalogo(boton){
 	data[1] = filaArray[1].firstChild.value;
 	data[2] = filaArray[2].firstChild.value;
 	data[3] = filaArray[3].firstChild.value;
+	data[4] = filaArray[4].firstChild.value;
+	data[5] = filaArray[5].firstChild.value;
+	data[6] = filaArray[6].firstChild.value;
+	if(data[6].toUpperCase() == "SI" ){
+		data[6] = 1;
+	}else{
+		data[6] = 0;
+	}
 
 	var dataJSON = JSON.stringify(data);
 	$.ajax({
@@ -364,5 +393,121 @@ function guardaCatalogo(boton){
 }
 
 function cargaProveedores(){
-	
+	$.ajax({
+		url: "php/cargaProveedores.php",
+		type: "POST",
+		success: function(respuesta){
+			if(respuesta!="error"){
+				var res = jQuery.parseJSON(respuesta);
+				document.getElementById("bodyTableProveedores").innerHTML = "";
+				for (var i=0; i<res.length; i++) {
+					var fila = res[i];
+					var row="<tr>";
+					row += "<input type='hidden' value='"+fila[5]+"'/>";
+					row+="<td>"+fila[0]+"</td>";
+					row+="<td>"+fila[1]+"</td>";
+					row+="<td>"+fila[2]+"</td>";
+					row+="<td>"+fila[3]+"</td>";
+					row+="<td>"+fila[4]+"</td>";
+					row+="<td><button class='btn-warning' onclick='eliminaProveedor(this)'><i class='fa fa-minus'></i></button> <button class='btn-success' onclick='filaProveedorMod(this)'><i class='fa fa-edit'></i></button></td>";
+					row+="</tr>";
+
+					document.getElementById("bodyTableProveedores").innerHTML += row;
+				}
+			}
+		}
+	});
+}
+
+function nuevaFilaProveedor(){
+	var row="";
+	row+="<td><input type='text'/></td>";
+	row+="<td><input type='text'/></td>";
+	row+="<td><input type='text'/></td>";
+	row+="<td><input type='text'/></td>";
+	row+="<td><input type='text'/></td>";
+	row+="<td><button onclick='guardaProveedor(this)' class='btn-success'><i class='fa fa-save'></i></button></td>";
+	row+="</tr>";
+
+	document.getElementById("bodyTableProveedores").innerHTML = row + document.getElementById("bodyTableProveedores").innerHTML;	
+}
+
+function eliminaProveedor(boton){
+	var idProveedor = (boton.parentNode.parentNode.childNodes)[0].value;
+	$.ajax({
+		url: "php/eliminaProveedor.php",
+		type: "POST",
+		data: {idProveedor: idProveedor},
+		cache: false,
+		success: function(respuesta){
+			if(respuesta=="correcto"){
+				cargaProveedores();
+			} else{
+				alert("Error eliminando el Catalogo");
+			}
+		}
+	});
+}
+
+function filaProveedorMod(boton){
+	var filaArray = boton.parentNode.parentNode.childNodes;
+	filaArray[0].innerHTML="<input type='hidden' value='"+filaArray[0].value+"'>";
+	filaArray[0].innerHTML="<input type='text' value='"+filaArray[0].innerText+"'>";
+	filaArray[1].innerHTML="<input type='text' value='"+filaArray[1].innerText+"'>";
+	filaArray[2].innerHTML="<input type='text' value='"+filaArray[2].innerText+"'>";
+	filaArray[3].innerHTML="<input type='text' value='"+filaArray[3].innerText+"'>";
+	filaArray[4].innerHTML="<input type='text' value='"+filaArray[4].innerText+"'>";
+	filaArray[5].innerHTML="<input type='text' value='"+filaArray[5].innerText+"'>";
+	filaArray[6].innerHTML="<button onclick='editaProveedor(this);' class='btn-success'><i class='fa fa-save'></i></button>";
+}
+
+function guardaProveedor(boton){
+	var filaArray = boton.parentNode.parentNode.childNodes;
+	var data = new Array();
+	data[0] = filaArray[0].firstChild.value;
+	data[1] = filaArray[1].firstChild.value;
+	data[2] = filaArray[2].firstChild.value;
+	data[3] = filaArray[3].firstChild.value;
+	data[4] = filaArray[4].firstChild.value;
+
+	var dataJSON = JSON.stringify(data);
+	$.ajax({
+		url: "php/guardaProveedor.php",
+		type: "POST",
+		data: {data: dataJSON},
+		cache: false,
+		success: function(respuesta){
+			if(respuesta=="correcto"){
+				cargaProveedores();
+			} else{
+				alert("Error creando el nuevo Proveedor, revise los datos");
+			}
+		}
+	});
+}
+
+function editaProveedor(boton){
+	var filaArray = boton.parentNode.parentNode.childNodes;
+	var data = new Array();
+	data[0] = filaArray[1].firstChild.value;
+	data[3] = filaArray[0].value;
+	data[1] = filaArray[2].firstChild.value;
+	data[2] = filaArray[3].firstChild.value;
+	data[4] = filaArray[4].firstChild.value;
+	data[5] = filaArray[5].firstChild.value;
+
+	var dataJSON = JSON.stringify(data);
+	$.ajax({
+		url: "php/editaProveedor.php",
+		type: "POST",
+		data: {data: dataJSON},
+		cache: false,
+		success: function(respuesta){
+			if(respuesta=="correcto"){
+				cargaProveedores();
+			} else{
+				alert("Error editando proveedores, revise los datos");
+			}
+		}
+	});
 }

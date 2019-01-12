@@ -69,7 +69,11 @@ CREATE TABLE `Catalogo_tiene` (
 	`idProducto` int(11) NOT NULL ,
  	`precio` int(11) NOT NULL,
 	`descripcion` text,
-  `nombre` text,
+	`nombre` text,
+	`categoria` text,
+	`marca` text,
+	`destacado` boolean,
+
 	PRIMARY KEY (`idCatalogo`),
 	FOREIGN KEY(`idProducto`) REFERENCES `Producto_suple`(`idProducto`) ON DELETE CASCADE ON UPDATE CASCADE
 
