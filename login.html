@@ -117,14 +117,14 @@
 				<div class="col-sm-4 col-sm-offset-1">
 					<div class="login-form"><!--INICIAR SESION-->
 						<h2>Inicia sesión</h2>
-						<form action="inicio_sesion.php" method="POST">
-							<input type="email" name="correo" placeholder="Correo electrónico" />
-							<input type="password" name="password" placeholder="Contraseña" />
+						<form id="inicioUsuarioForm" method="POST" enctype="multipart/form-data">
+							<input type="email" id="correo" name="correo" placeholder="Correo electrónico" />
+							<input type="password" id="password" name="password" placeholder="Contraseña" />
 							<span>
 								<input type="checkbox" class="checkbox"> 
 								Recuérdame
 							</span>
-							<button type="submit" name="login" class="btn btn-default">Iniciar sesión</button>
+							<button onclick="iniciarSesion();" class="btn btn-default">Iniciar sesión</button>
 						</form>
 					</div><!--/login form-->
 				</div>
