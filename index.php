@@ -14,7 +14,7 @@ else if($tipo == 1){
 else if($tipo == 3){
 	$usuario = "";
 }
-echo "Usuario: $usuario ";
+//echo "Usuario: $usuario ";
 
 
 ?>
@@ -79,10 +79,15 @@ echo "Usuario: $usuario ";
 					</div>
 					<div class="col-sm-8">
 						<div class="shop-menu pull-right">
-							<ul class="nav navbar-nav">
-								<li><a href="#"><i class="fa fa-user"></i> Cuenta</a></li>
+							<ul class="nav navbar-nav">	
+								<?php if($usuario != ""): ?>
+								<li><a href="#"><i class="fa fa-user"></i><?php echo $usuario ?></a></li>
 								<li><a href="cart.html"><i class="fa fa-shopping-cart"></i> Cesta</a></li>
-								<li><a href="login.html"><i class="fa fa-lock"></i> Login</a></li>
+								<li><a href="php/cerrar_sesion.php"><i class="fa fa-lock"></i> Cerrar sesión</a></li>
+								<?php else: ?>
+								<li><a href="cart.html"><i class="fa fa-shopping-cart"></i> Cesta</a></li>
+								<li><a href="login.html"><i class="fa fa-lock"></i> Iniciar sesión</a></li>
+								<?php endif; ?>
 							</ul>
 						</div>
 					</div>
