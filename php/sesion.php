@@ -35,6 +35,5 @@ class Cookies{
 			session_destroy();
 		}
 	}
-//FUNCIONA PERFECTO EN CUANTO A SINTAXIS
-	//echo "holaholahola";
+
 ?>

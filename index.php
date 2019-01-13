@@ -1,6 +1,22 @@
 <?php
+include 'php/sesion.php';
+ //$_SESSION['$user']; debe ir despues de session start
+$sesion = new Cookies();
+$tipo = $sesion->tipoConexion();
+if ($tipo == 0){
+	//$usuario = "Administrador";
+	header('Location: admin.html');
 
-$usuario = isset($_SESSION["usuario"]) ? $_SESSION["usuario"] : null;
+}
+else if($tipo == 1){
+	$usuario = $sesion->obtenerUsuario();
+}
+else if($tipo == 3){
+	$usuario = "";
+}
+echo "Usuario: $usuario ";
+
+
 ?>
 <html lang="en">
 <head>
