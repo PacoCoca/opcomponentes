@@ -37,6 +37,11 @@
 							<h4 class="panel-title"><a href="#" onclick="openContainer('Proveedores');cargaProveedores();">Proveedores</a></h4>
 						</div>
 					</div>
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h4 class="panel-title"><a href="#" onclick="openContainer('Usuario');cargaUsuarios();">Usuario</a></h4>
+						</div>
+					</div>
 				</div>
 			</div>
 			<div class="col-sm-9">
@@ -132,6 +137,30 @@
 				</thead>
 				<tbody id="bodyTableProveedores">
 					
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<div id="Usuario" class="container containerPlus" style="position: absolute; top:30px; left: 20px; width:80%; height: 100%; opacity:1" data-drag=true data-resize=true data-collapsable=true data-close=true data-containment="document" data-buttons="fullscreen,close" data-autoresize="false">
+		<h2>Usuario</h2>
+		<div class="row">
+			<button onclick="nuevaFilaUsuario();">Nuevo Usuario</button> 
+			<div style="clear:both;"><br></div>
+			<table >
+				<thead>
+					<tr>
+						<th>idUsuario</th>
+						<th>Nombre</th>
+						<th>Correo</th>
+						<th >pass</th>
+						<th >Telefono</th>
+						<th >Direccion</th>
+						<th >Admin</th>
+					</tr>
+				</thead>
+				<tbody id="bodyTableUsuario">
+
 				</tbody>
 			</table>
 		</div>

@@ -443,7 +443,7 @@ function eliminaProveedor(boton){
 			if(respuesta=="correcto"){
 				cargaProveedores();
 			} else{
-				alert("Error eliminando el Catalogo");
+				alert("Error eliminando el Proveedor");
 			}
 		}
 	});
@@ -507,6 +507,146 @@ function editaProveedor(boton){
 				cargaProveedores();
 			} else{
 				alert("Error editando proveedores, revise los datos");
+			}
+		}
+	});
+}
+
+function cargaUsuarios(){
+	$.ajax({
+		url: "php/cargaUsuarios.php",
+		type: "POST",
+		success: function(respuesta){
+			if(respuesta!="error"){
+				var res = jQuery.parseJSON(respuesta);
+				document.getElementById("bodyTableUsuario").innerHTML = "";
+				for (var i=0; i<res.length; i++) {
+					var fila = res[i];
+					var row="<tr>";
+					row+="<td>"+fila[0]+"</td>";
+					row+="<td>"+fila[1]+"</td>";
+					row+="<td>"+fila[2]+"</td>";
+					row+="<td>"+fila[3]+"</td>";
+					row+="<td>"+fila[4]+"</td>";
+					row+="<td>"+fila[5]+"</td>";
+					if(fila[6] == 1){
+						row+="<td>Si</td>";
+
+					}else{
+						row+="<td>No</td>";
+					}
+					row+="<td><button class='btn-warning' onclick='eliminaUsuario(this)'><i class='fa fa-minus'></i></button> <button class='btn-success' onclick='filaUsuarioMod(this)'><i class='fa fa-edit'></i></button></td>";
+					row+="</tr>";
+
+					document.getElementById("bodyTableUsuario").innerHTML += row;
+				}
+			}
+		}
+	});
+}
+
+function nuevaFilaUsuario(){
+	var row="";
+	row+="<td></td>";
+	row+="<td><input type='text'/></td>";
+	row+="<td><input type='text'/></td>";
+	row+="<td><input type='text'/></td>";
+	row+="<td><input type='text'/></td>";
+	row+="<td><input type='text'/></td>";
+	row+="<td><input type='text'/></td>";
+	row+="<td><button onclick='guardaUsuario(this)' class='btn-success'><i class='fa fa-save'></i></button></td>";
+	row+="</tr>";
+
+	document.getElementById("bodyTableUsuario").innerHTML = row + document.getElementById("bodyTableProveedores").innerHTML;	
+}
+
+function guardaUsuario(boton){
+	var filaArray = boton.parentNode.parentNode.childNodes;
+	var data = new Array();
+	data[0] = filaArray[1].firstChild.value;
+	data[1] = filaArray[2].firstChild.value;
+	data[2] = filaArray[3].firstChild.value;
+	data[3] = filaArray[4].firstChild.value;
+	data[4] = filaArray[5].firstChild.value;
+	data[5] = filaArray[6].firstChild.value;
+	if(data[5].toUpperCase() == "SI" ){
+		data[5] = 1;
+	}else{
+		data[5] = 0;
+	}
+
+
+	var dataJSON = JSON.stringify(data);
+	$.ajax({
+		url: "php/guardaUsuario.php",
+		type: "POST",
+		data: {data: dataJSON},
+		cache: false,
+		success: function(respuesta){
+			if(respuesta=="correcto"){
+				cargaUsuarios();
+			} else{
+				alert("Error creando el nuevo Usuario, revise los datos");
+			}
+		}
+	});
+}
+
+function filaUsuarioMod(boton){
+	var filaArray = boton.parentNode.parentNode.childNodes;
+	filaArray[1].innerHTML="<input type='text' value='"+filaArray[1].innerText+"'>";
+	filaArray[2].innerHTML="<input type='text' value='"+filaArray[2].innerText+"'>";
+	filaArray[3].innerHTML="<input type='text' value='"+filaArray[3].innerText+"'>";
+	filaArray[4].innerHTML="<input type='text' value='"+filaArray[4].innerText+"'>";
+	filaArray[5].innerHTML="<input type='text' value='"+filaArray[5].innerText+"'>";
+	filaArray[6].innerHTML="<input type='text' value='"+filaArray[6].innerText+"'>";
+	filaArray[7].innerHTML="<button onclick='editaUsuario(this);' class='btn-success'><i class='fa fa-save'></i></button>";
+}
+
+function editaUsuario(boton){
+	var filaArray = boton.parentNode.parentNode.childNodes;
+	var data = new Array();
+	data[0] = filaArray[0].innerText;
+	data[1] = filaArray[1].firstChild.value;
+	data[2] = filaArray[2].firstChild.value;
+	data[3] = filaArray[3].firstChild.value;
+	data[4] = filaArray[4].firstChild.value;
+	data[5] = filaArray[5].firstChild.value;
+	data[6] = filaArray[6].firstChild.value;
+	if(data[6].toUpperCase() == "SI"){
+		data[6] = 1;
+	}else{
+		data[6] = 0;
+	}
+
+	var dataJSON = JSON.stringify(data);
+	$.ajax({
+		url: "php/editaUsuario.php",
+		type: "POST",
+		data: {data: dataJSON},
+		cache: false,
+		success: function(respuesta){
+			if(respuesta=="correcto"){
+				cargaUsuarios();
+			} else{
+				alert("Error editando usuario, revise los datos");
+			}
+		}
+	});
+}
+
+function eliminaUsuario(boton){
+	var idUsuario = (boton.parentNode.parentNode.childNodes)[0].innerText;
+	$.ajax({
+		url: "php/eliminaUsuario.php",
+		type: "POST",
+		data: {idUsuario: idUsuario},
+		cache: false,
+		success: function(respuesta){
+			if(respuesta=="correcto"){
+				cargaUsuarios();
+			} else{
+				alert("Error eliminando el Usuario");
 			}
 		}
 	});

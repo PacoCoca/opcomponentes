@@ -10,10 +10,10 @@ $query1="INSERT INTO Proveedor(idProveedor,nombre,correo,CIF,telefono,direccion)
 $rs1 = mysqli_query($conn,$query1);
 
 //Introducimos los datos en usuario
-$query2="INSERT INTO Usuario(idUsuario, nombre, correo, pass, telefono,direccion) VALUES ('1', 'Manuel', 'manuel@correo.ugr.es', '1234', '675849623', 'Camino de ronda 30')";
+$query2="INSERT INTO Usuario(idUsuario, nombre, correo, pass, telefono,direccion,admin) VALUES ('1', 'Manuel', 'manuel@correo.ugr.es', '1234', '675849623', 'Camino de ronda 30','0')";
 $rs2 = mysqli_query($conn,$query2);
 
-$query3="INSERT INTO Usuario(idUsuario, nombre, correo, pass, telefono,direccion) VALUES ('2', 'Sixto', 'sixto@correo.ugr.es', 'Granada', '674828901', 'Calle Alcala 30')";
+$query3="INSERT INTO Usuario(idUsuario, nombre, correo, pass, telefono,direccion,admin) VALUES ('2', 'Sixto', 'sixto@correo.ugr.es', 'Granada', '674828901', 'Calle Alcala 30','1')";
 $rs3 = mysqli_query($conn,$query3);
 
 //Introducimos los datos en Factura

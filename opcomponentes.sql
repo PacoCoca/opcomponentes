@@ -32,6 +32,7 @@ CREATE TABLE `Usuario` (
   `pass` text NOT NULL,
   `telefono` text,
   `direccion` text,
+  `admin` boolean,
   PRIMARY KEY(`idUsuario`),
   UNIQUE KEY `correo` (`correo`)
 ) DEFAULT CHARSET=utf8;
