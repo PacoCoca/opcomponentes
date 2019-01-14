@@ -7,12 +7,12 @@ $data[2] = $_POST['password'];
 $data[3] = $_POST['telefono'];
 $data[4] = $_POST['direccion'];
 
-$administrador = "admin";
+//$administrador = "admin";
 $admin = false;
 
-if ($data[0] == $administrador ){
-	$admin = true;	
-}
+//if ($data[0] == $administrador ){
+//	$admin = true;	
+//}
 
 $query = "INSERT INTO Usuario(nombre,correo,pass,telefono,direccion,admin) VALUES('$data[0]', '$data[1]','$data[2]','$data[3]','$data[4]','$admin')";
 $rs = mysqli_query($conn,$query);
