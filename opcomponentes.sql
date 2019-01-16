@@ -109,7 +109,7 @@ CREATE TABLE `Anade` (
   `fechaFin` date NOT NULL,
   `idPromocion` int(11) NOT NULL,
   `idCatalogo` int(11) NOT NULL,
-  PRIMARY KEY (`fechaInicio`, `fechaFin`, `idCadatetalogo`),
+  PRIMARY KEY (`fechaInicio`, `fechaFin`, `idCatalogo`),
   FOREIGN KEY(`idPromocion`) REFERENCES `Promociones`(`idPromocion`) ON DELETE CASCADE ON UPDATE CASCADE,
   FOREIGN KEY(`idCatalogo`) REFERENCES `Catalogo_tiene`(`idCatalogo`) ON DELETE CASCADE ON UPDATE CASCADE 
 )DEFAULT CHARSET=utf8;

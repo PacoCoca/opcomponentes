@@ -184,7 +184,6 @@ function confirmaCompra(boton){
 		}
 	}
 
-
 	var idsCantidadJSON= JSON.stringify(Array.from(idsCantidad.entries()));
 	$.ajax({
 		url: "php/guardaCompra.php",
@@ -195,6 +194,9 @@ function confirmaCompra(boton){
 			console.log(respuesta);
 			if (respuesta=="error"){
 				alert("Ha habido un error realizando la compra");
+			} else if(respuesta=="noUsuario"){
+				alert("Debe registrarse para realizar una compra");
+				document.getElementById("carritoProds").innerHTML ='<li><div class="col-sm-6" id="totalCarrito"></div><div class="col-sm-6"><button onclick="confirmaCompra(this)">Confirmar</button></div></li>';
 			} else{
 				alert("La compra se ha realizado correctamente.");
 				document.getElementById("carritoProds").innerHTML ='<li><div class="col-sm-6" id="totalCarrito"></div><div class="col-sm-6"><button onclick="confirmaCompra(this)">Confirmar</button></div></li>';
