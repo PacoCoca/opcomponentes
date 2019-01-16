@@ -274,6 +274,8 @@ function cargaCatalogo(){
 					}else{
 						row+="<td>No</td>";
 					}
+					row+="<td>"+fila[7]+"</td>";
+
 					row+="<td><button class='btn-warning' onclick='eliminaCatalogo(this)'><i class='fa fa-minus'></i></button> <button class='btn-success' onclick='filaCatalogoMod(this)'><i class='fa fa-edit'></i></button></td>";
 					row+="</tr>";
 	
@@ -309,7 +311,8 @@ function filaCatalogoMod(boton){
 	filaArray[4].innerHTML="<input type='text' value='"+filaArray[4].innerText+"'>";
 	filaArray[5].innerHTML="<input type='text' value='"+filaArray[5].innerText+"'>";
 	filaArray[6].innerHTML="<input type='text' value='"+filaArray[6].innerText+"'>";
-	filaArray[7].innerHTML="<button onclick='editaCatalogo(this);' class='btn-success'><i class='fa fa-save'></i></button>";
+	filaArray[7].innerHTML="<input type='text' value='"+filaArray[7].innerText+"'>";
+	filaArray[8].innerHTML="<button onclick='editaCatalogo(this);' class='btn-success'><i class='fa fa-save'></i></button>";
 }
 
 function editaCatalogo(boton){
@@ -322,6 +325,7 @@ function editaCatalogo(boton){
 	data[4] = filaArray[4].firstChild.value;
 	data[5] = filaArray[5].firstChild.value;
 	data[6] = filaArray[6].firstChild.value;
+	data[7] = filaArray[7].firstChild.value;
 
 	if(data[6].toUpperCase() == "SI" ){
 		data[6] = 1;
@@ -354,6 +358,7 @@ function nuevaFilaCatalogo(){
 	row+="<td><input type='text'/></td>";
 	row+="<td><input type='text'/></td>";
 	row+="<td><input type='text'/></td>";
+	row+="<td><input type='text'/></td>";
 	row+="<td><button onclick='guardaCatalogo(this);' class='btn-success'><i class='fa fa-save'></i></button></td>";
 	row+="</tr>";
 
@@ -370,6 +375,7 @@ function guardaCatalogo(boton){
 	data[4] = filaArray[4].firstChild.value;
 	data[5] = filaArray[5].firstChild.value;
 	data[6] = filaArray[6].firstChild.value;
+	data[7] = filaArray[7].firstChild.value;
 	if(data[6].toUpperCase() == "SI" ){
 		data[6] = 1;
 	}else{

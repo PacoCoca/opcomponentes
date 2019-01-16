@@ -73,6 +73,7 @@ CREATE TABLE `Catalogo_tiene` (
 	`nombre` text,
 	`categoria` text,
 	`marca` text,
+	`src` text,
 	`destacado` boolean,
 
 	PRIMARY KEY (`idCatalogo`),

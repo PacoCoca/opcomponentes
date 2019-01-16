@@ -110,27 +110,15 @@ else if($tipo == 3){
 						<div class="mainmenu pull-left">
 							<ul class="nav navbar-nav collapse navbar-collapse">
 								<li><a href="index.php" class="active">Home</a></li>
-								<li class="dropdown"><a href="#">Tienda<i class="fa fa-angle-down"></i></a>
-                                    <ul role="menu" class="sub-menu">
-                                        <li><a href="shop.html">Productos</a></li> 
-										<li><a href="cart.html">Cesta</a></li> 
-										<li><a href="login.html">Login</a></li> 
-                                    </ul>
-                                </li> 
 								<li><a href="contact-us.html">Contacto</a></li>
 							</ul>
-						</div>
-					</div>
-					<div class="col-sm-3">
-						<div class="search_box pull-right">
-							<input type="text" placeholder="Búsqueda"/>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div><!--/header-bottom-->
 	</header><!--/header-->
-	
+
 	<section id="slider"><!--slider-->
 		<div class="container">
 			<div class="row">
@@ -195,7 +183,7 @@ else if($tipo == 3){
 			</div>
 		</div>
 	</section><!--/slider-->
-	
+
 	<section>
 		<div class="container">
 			<div class="row">
@@ -203,269 +191,24 @@ else if($tipo == 3){
 					<div class="left-sidebar">
 						<h2>Categorías</h2>
 						<div class="panel-group category-products" id="accordian"><!--category-productsr-->
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title">
-										<a data-toggle="collapse" data-parent="#accordian" href="#sportswear">
-											<span class="badge pull-right"><i class="fa fa-plus"></i></span>
-											Ordenadores
-										</a>
-									</h4>
-								</div>
-								<div id="sportswear" class="panel-collapse collapse">
-									<div class="panel-body">
-										<ul>
-											<li><a href="#">Portátiles </a></li>
-											<li><a href="#">Fijos </a></li>
-											<li><a href="#">2 en 1 </a></li>
-										</ul>
-									</div>
-								</div>
-							</div>
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title"><a href="#">SmartPhones</a></h4>
-								</div>
-							</div>
-							
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title">
-										<a data-toggle="collapse" data-parent="#accordian" href="#womens">
-											<span class="badge pull-right"><i class="fa fa-plus"></i></span>
-											Priféricos
-										</a>
-									</h4>
-								</div>
-								<div id="womens" class="panel-collapse collapse">
-									<div class="panel-body">
-										<ul>
-											<li><a href="#">Ratones</a></li>
-											<li><a href="#">Teclados</a></li>
-											<li><a href="#">Monitores</a></li>
-											<li><a href="#">Auriculares</a></li>
-											<li><a href="#">Sillas Gaming</a></li>
-										</ul>
-									</div>
-								</div>
-							</div>
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title"><a href="#">Televisores</a></h4>
-								</div>
-							</div>
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title"><a href="#">Tablets</a></h4>
-								</div>
-							</div>
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title"><a href="#">Consolas</a></h4>
-								</div>
-							</div>
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title"><a href="#">Impresoras</a></h4>
-								</div>
-							</div>
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title"><a href="#">Componentes</a></h4>
-								</div>
-							</div>
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title"><a href="#">Cables</a></h4>
-								</div>
-							</div>
 						</div><!--/category-products-->
 					
-						<div class="brands_products"><!--brands_products-->
+						<div class="brands_products" ><!--brands_products-->
 							<h2>Marcas</h2>
 							<div class="brands-name">
-								<ul class="nav nav-pills nav-stacked">
-									<li><a href="#"> <span class="pull-right">(50)</span>MSI</a></li>
-									<li><a href="#"> <span class="pull-right">(56)</span>GIGABYTE</a></li>
-									<li><a href="#"> <span class="pull-right">(27)</span>APPLE</a></li>
-									<li><a href="#"> <span class="pull-right">(32)</span>SAMSUNG</a></li>
-									<li><a href="#"> <span class="pull-right">(5)</span>HP</a></li>
-									<li><a href="#"> <span class="pull-right">(9)</span>DELL</a></li>
-									<li><a href="#"> <span class="pull-right">(5)</span>LG</a></li>
-									<li><a href="#"> <span class="pull-right">(7)</span>INTEL</a></li>
-									<li><a href="#"> <span class="pull-right">(4)</span>KINGSTONE</a></li>
-									<li><a href="#"> <span class="pull-right">(2)</span>NVIDIA</a></li>
-									<li><a href="#"> <span class="pull-right">(4)</span>ARM</a></li>
-									<li><a href="#"> <span class="pull-right">(12)</span>RAZER</a></li>
-									<li><a href="#"> <span class="pull-right">(23)</span>SANDISK</a></li>
-									<li><a href="#"> <span class="pull-right">(32)</span>Sony</a></li>
-									<li><a href="#"> <span class="pull-right">(9)</span>Asus</a></li>
-									<li><a href="#"> <span class="pull-right">(4)</span>Corsair</a></li>
-									<li><a href="#"> <span class="pull-right">(1)</span>Canon</a></li>
+								<ul class="nav nav-pills nav-stacked" id="idMarcas">
+								
 								</ul>
 							</div>
 						</div><!--/brands_products-->
-						
-						<div class="price-range"><!--price-range-->
-							<h2>Rango de precios</h2>
-							<div class="well text-center">
-								 <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="600" data-slider-step="5" data-slider-value="[250,450]" id="sl2" ><br />
-								 <b class="pull-left">€ 0</b> <b class="pull-right">€ 2000</b>
-							</div>
-						</div><!--/price-range-->
 					
 					</div>
 				</div>
 				
 				<div class="col-sm-9 padding-right">
-					<div class="features_items"><!--features_items-->
-						<h2 class="title text-center">Productos Destacados</h2>
-						<div class="col-sm-4">
-							<div class="product-image-wrapper">
-								<div class="single-products">
-										<div class="productinfo text-center">
-											<img src="images/home/product1.jpg" alt="" />
-											<h2>150€</h2>
-											<p>Apple AirPods</p>
-											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Añadir a la cesta</a>
-										</div>
-										<div class="product-overlay">
-											<div class="overlay-content">
-												<h2>150€</h2>
-												<p>Apple AirPods</p>
-												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Añadir a la cesta</a>
-											</div>
-										</div>
-								</div>
-								<div class="choose">
-									<ul class="nav nav-pills nav-justified">
-										<li><a href="#"><i class="fa fa-plus-square"></i>Comparar con otro producto</a></li>
-									</ul>
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-4">
-							<div class="product-image-wrapper">
-								<div class="single-products">
-									<div class="productinfo text-center">
-										<img src="images/home/product2.jpg" alt="" />
-										<h2>60€</h2>
-										<p>Impresora Canon</p>
-										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Añadir a la cesta</a>
-									</div>
-									<div class="product-overlay">
-										<div class="overlay-content">
-											<h2>60€</h2>
-											<p>Impresora Canon</p>
-											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Añadir a la cesta</a>
-										</div>
-									</div>
-								</div>
-								<div class="choose">
-									<ul class="nav nav-pills nav-justified">
-										<li><a href="#"><i class="fa fa-plus-square"></i>Comparar con otro producto</a></li>
-									</ul>
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-4">
-							<div class="product-image-wrapper">
-								<div class="single-products">
-									<div class="productinfo text-center">
-										<img src="images/home/product3.jpg" alt="" />
-										<h2>90€</h2>
-										<p>Memoria RAM Corsair</p>
-										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Añadir a la cesta</a>
-									</div>
-									<div class="product-overlay">
-										<div class="overlay-content">
-											<h2>90€</h2>
-											<p>Memoria RAM Corsair</p>
-											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Añadir a la cesta</a>
-										</div>
-									</div>
-								</div>
-								<div class="choose">
-									<ul class="nav nav-pills nav-justified">
-										<li><a href="#"><i class="fa fa-plus-square"></i>Comparar con otro producto</a></li>
-									</ul>
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-4">
-							<div class="product-image-wrapper">
-								<div class="single-products">
-									<div class="productinfo text-center">
-										<img src="images/home/ps4.jpg" alt="" />
-										<h2>250€</h2>
-										<p>Play Station 4 500Gb</p>
-										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Añadir a la cesta</a>
-									</div>
-									<div class="product-overlay">
-										<div class="overlay-content">
-											<h2>250€</h2>
-											<p>Play Station 4 500Gb</p>
-											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Añadir a la cesta</a>
-										</div>
-									</div>
-									<img src="images/home/new.png" class="new" alt="" />
-								</div>
-								<div class="choose">
-									<ul class="nav nav-pills nav-justified">
-										<li><a href="#"><i class="fa fa-plus-square"></i>Comparar con otro producto</a></li>
-									</ul>
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-4">
-							<div class="product-image-wrapper">
-								<div class="single-products">
-									<div class="productinfo text-center">
-										<img src="images/home/oneplus.jpg" alt="" />
-										<h2>450€</h2>
-										<p>One Plus 6T</p>
-										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Añadir a la cesta</a>
-									</div>
-									<div class="product-overlay">
-										<div class="overlay-content">
-											<h2>450€</h2>
-											<p>One Plus 6T</p>
-											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Añadir a la cesta</a>
-										</div>
-									</div>
-									<img src="images/home/sale.png" class="new" alt="" />
-								</div>
-								<div class="choose">
-									<ul class="nav nav-pills nav-justified">
-										<li><a href="#"><i class="fa fa-plus-square"></i>Comparar con otro producto</a></li>
-									</ul>
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-4">
-							<div class="product-image-wrapper">
-								<div class="single-products">
-									<div class="productinfo text-center">
-										<img src="images/home/ssd.jpg"  alt="" />
-										<h2>90€</h2>
-										<p>Disco duro sólido 250Gb</p>
-										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Añadir a la cesta</a>
-									</div>
-									<div class="product-overlay">
-										<div class="overlay-content">
-											<h2>$90€</h2>
-											<p>Disco duro sólido 250Gb</p>
-											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Añadir a la cesta</a>
-										</div>
-									</div>
-								</div>
-								<div class="choose">
-									<ul class="nav nav-pills nav-justified">
-										<li><a href="#"><i class="fa fa-plus-square"></i>Comparar con otro producto</a></li>
-									</ul>
-								</div>
-							</div>
-						</div>
+					<h2 class="title text-center" id="idTituloProductos" >Productos Destacados</h2>
+					<div class="features_items" id="idProductoDestacados"><!--features_items-->
+						
 						
 					</div><!--features_items-->
 					

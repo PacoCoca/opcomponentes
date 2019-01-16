@@ -58,10 +58,10 @@ $query14="INSERT INTO compra(fecha,idUsuario,idProducto,cantidad) VALUES ('2018-
 $rs14 = mysqli_query($conn,$query14);
 
 //Introducimos los datos en Catalogo_tiene
-$query15="INSERT INTO Catalogo_tiene(idCatalogo,idProducto,precio,descripcion,nombre,categoria,marca,destacado) VALUES ('1', '1', '150', 'es una tarjeta grafica', 'tarjeta grafica','grafica','nvidia','1');";
+$query15="INSERT INTO Catalogo_tiene(idCatalogo,idProducto,precio,descripcion,nombre,categoria,marca,destacado,src) VALUES ('1', '1', '150', 'es una tarjeta grafica', 'tarjeta grafica','grafica','nvidia','1','./images/home/grafica.jpg');";
 $rs15 = mysqli_query($conn,$query15);
 
-$query16="INSERT INTO Catalogo_tiene(idCatalogo,idProducto,precio,descripcion,nombre,categoria,marca,destacado) VALUES ('2', '3', '50', 'es un procesador para un servido', 'procesador servidor','procesador','intel','0');";
+$query16="INSERT INTO Catalogo_tiene(idCatalogo,idProducto,precio,descripcion,nombre,categoria,marca,destacado,src) VALUES ('2', '3', '50', 'es un procesador para un servido', 'procesador servidor','procesador','intel','0','./images/home/procesador.jpg');";
 $rs16 = mysqli_query($conn,$query16);
 
 //Introducimos los datos en Anade
