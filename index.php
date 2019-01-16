@@ -36,7 +36,7 @@ else if($tipo == 3){
     <script src="js/html5shiv.js"></script>
     <script src="js/respond.min.js"></script>
     <![endif]-->       
-    <link rel="shortcut icon" href="images/ico/favicon.ico">
+	<link rel="shortcut icon" href="images/home/logo.png">
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/ico/apple-touch-icon-144-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png">
@@ -80,12 +80,15 @@ else if($tipo == 3){
 					<div class="col-sm-8">
 						<div class="shop-menu pull-right">
 							<ul class="nav navbar-nav">	
+								<li class="dropdown" ><a href="#"><i class="fa fa-shopping-cart"></i> Cesta</a>
+									<ul id="carritoProds" role="menu" class="sub-menu" style="background: #FE980F">
+										<li><div class="col-sm-6" id="totalCarrito"></div><div class="col-sm-6"><button onclick="confirmaCompra(this)">Confirmar</button></div></li>
+									</ul>
+								</li>
 								<?php if($usuario != ""): ?>
 								<li><a href="#"><i class="fa fa-user"></i><?php echo $usuario ?></a></li>
-								<li><a href="cart.html"><i class="fa fa-shopping-cart"></i> Cesta</a></li>
 								<li><a href="php/cerrar_sesion.php"><i class="fa fa-lock"></i> Cerrar sesión</a></li>
 								<?php else: ?>
-								<li><a href="cart.html"><i class="fa fa-shopping-cart"></i> Cesta</a></li>
 								<li><a href="login.html"><i class="fa fa-lock"></i> Iniciar sesión</a></li>
 								<?php endif; ?>
 							</ul>

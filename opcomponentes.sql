@@ -109,13 +109,13 @@ CREATE TABLE `Anade` (
   `fechaFin` date NOT NULL,
   `idPromocion` int(11) NOT NULL,
   `idCatalogo` int(11) NOT NULL,
-  PRIMARY KEY (`fechaInicio`, `fechaFin`, `idCatalogo`),
+  PRIMARY KEY (`fechaInicio`, `fechaFin`, `idCadatetalogo`),
   FOREIGN KEY(`idPromocion`) REFERENCES `Promociones`(`idPromocion`) ON DELETE CASCADE ON UPDATE CASCADE,
   FOREIGN KEY(`idCatalogo`) REFERENCES `Catalogo_tiene`(`idCatalogo`) ON DELETE CASCADE ON UPDATE CASCADE 
 )DEFAULT CHARSET=utf8;
 
 CREATE TABLE `compra` (
-  `fecha` date NOT NULL,
+  `fecha` DATETIME NOT NULL,
   `idUsuario` int(11) NOT NULL,
   `idProducto` int(11) NOT NULL,
   `cantidad` int(11) NOT NULL,

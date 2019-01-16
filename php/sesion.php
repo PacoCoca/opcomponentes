@@ -40,8 +40,17 @@ class Cookies{
 		}
 
 		function obtenerUsuario(){
-
 			return $this->usuario;
+		}
+
+		function getId(){
+			$conn = openCon();
+			$nombre=$this->usuario;
+			$query="SELECT idUsuario FROM Usuario WHERE nombre='$nombre'";
+			$rs= mysqli_query($conn,$query);
+
+			$row = mysqli_fetch_assoc($rs);
+    		return $row['idUsuario'];
 		}
 
 		function destruir(){
