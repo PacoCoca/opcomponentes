@@ -18,7 +18,11 @@ if($user){
 		$cantidad=$idsCantidad[$i][1];
 		$query = "INSERT INTO compra(fecha, idUsuario, idProducto, cantidad) VALUES('$hoy', '$user', '$idProducto','$cantidad')";
 		$rs = mysqli_query($conn,$query);
-		if($rs){
+
+		$query3 = "UPDATE Producto_suple SET cantidadProducto =cantidadProducto-'$cantidad' WHERE idProducto='$idProducto' and cantidadProducto > 0";
+		$rs3 = mysqli_query($conn,$query3);
+
+		if($rs && $rs3){
 			$res = "correcto";
 		} else{
 			$res = "error";
