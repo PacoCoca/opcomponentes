@@ -80,36 +80,8 @@ function muestraDestacados(){
 		url: "php/muestraDestacados.php",
 		type: "POST",
 		success: function(respuesta){
-			if(respuesta != "error"){
-				var res = jQuery.parseJSON(respuesta);
-				document.getElementById("idProductoDestacados").innerHTML = "";
-				for (var i=0; i<res.length; i++) {
-					var fila = res[i];
-					var row="<div class='col-sm-4'>";
-					row +="<div class='product-image-wrapper'>";
-					row +="<div class='single-products'>";
-					row +="<div class='productinfo text-center'>";
-					row += "<img src='"+fila[4]+"' alt='' />";
-					row+="<h2>"+fila[1]+"</h2>";
-					row+="<p>"+fila[3]+"</p>";
-					row+="<a href='#'' class='btn btn-default add-to-cart'><i class='fa fa-shopping-cart'></i>Añadir a la cesta</a>";
-					row+="</div>";
-					row+="<div class='product-overlay'>";
-					row+="<div class='overlay-content'>";
-					row += fila[2];
-					row+="<h2>"+fila[1]+"</h2>";
-					row+="<p>"+fila[3]+"</p>";
-					row+="<a href='#'' class='btn btn-default add-to-cart'><i class='fa fa-shopping-cart'></i>Añadir a la cesta</a>";
-					row+="</div>";
-					row+="</div>";
-					row+="</div>";
-					row+="</div>";
-					row+="</div>";
-
-	
-					document.getElementById("idProductoDestacados").innerHTML += row;
-				}
-			}
+						console.log(respuesta);
+			procesaProductos(respuesta);
 		}
 	});
 }
@@ -123,37 +95,8 @@ function muestraCategorias(boton){
 		data: {categoria: categoria},
 		cache: false,
 		success: function(respuesta){
-			if(respuesta != "error"){
-				var res = jQuery.parseJSON(respuesta);
-				document.getElementById("idProductoDestacados").innerHTML = "";
-				document.getElementById("idTituloProductos").innerHTML = "Categoria de "+categoria;
-				for (var i=0; i<res.length; i++) {
-					var fila = res[i];
-					var row="<div class='col-sm-4'>";
-					row +="<div class='product-image-wrapper'>";
-					row +="<div class='single-products'>";
-					row +="<div class='productinfo text-center'>";
-					row += "<img src='"+fila[4]+"' alt='' />";
-					row+="<h2>"+fila[1]+"</h2>";
-					row+="<p>"+fila[3]+"</p>";
-					row+="<a href='#'' class='btn btn-default add-to-cart'><i class='fa fa-shopping-cart'></i>Añadir a la cesta</a>";
-					row+="</div>";
-					row+="<div class='product-overlay'>";
-					row+="<div class='overlay-content'>";
-					row += fila[2];
-					row+="<h2>"+fila[1]+"</h2>";
-					row+="<p>"+fila[3]+"</p>";
-					row+="<a href='#'' class='btn btn-default add-to-cart'><i class='fa fa-shopping-cart'></i>Añadir a la cesta</a>";
-					row+="</div>";
-					row+="</div>";
-					row+="</div>";
-					row+="</div>";
-					row+="</div>";
-
-	
-					document.getElementById("idProductoDestacados").innerHTML += row;
-				}
-			}
+			document.getElementById("idTituloProductos").innerHTML = "Categoria de "+categoria;
+			procesaProductos(respuesta);
 		}
 	});
 }
@@ -166,40 +109,44 @@ function muestraMarcas(boton){
 		data: {marca: marca},
 		cache: false,
 		success: function(respuesta){
-			if(respuesta != "error"){
-				var res = jQuery.parseJSON(respuesta);
-				document.getElementById("idProductoDestacados").innerHTML = "";
-				document.getElementById("idTituloProductos").innerHTML = "Productos de "+marca;
-				for (var i=0; i<res.length; i++) {
-					var fila = res[i];
-					var row="<div class='col-sm-4'>";
-					row +="<div class='product-image-wrapper'>";
-					row +="<div class='single-products'>";
-					row +="<div class='productinfo text-center'>";
-					row += "<img src='"+fila[4]+"' alt='' />";
-					row+="<h2>"+fila[1]+"</h2>";
-					row+="<p>"+fila[3]+"</p>";
-					row+="<a href='#'' class='btn btn-default add-to-cart'><i class='fa fa-shopping-cart'></i>Añadir a la cesta</a>";
-					row+="</div>";
-					row+="<div class='product-overlay'>";
-					row+="<div class='overlay-content'>";
-					row += fila[2];
-					row+="<h2>"+fila[1]+"</h2>";
-					row+="<p>"+fila[3]+"</p>";
-					row+="<a href='#'' class='btn btn-default add-to-cart'><i class='fa fa-shopping-cart'></i>Añadir a la cesta</a>";
-					row+="</div>";
-					row+="</div>";
-					row+="</div>";
-					row+="</div>";
-					row+="</div>";
-	
-					document.getElementById("idProductoDestacados").innerHTML += row;
-				}
-			}
+			document.getElementById("idTituloProductos").innerHTML = "Productos de "+marca;
+			procesaProductos(respuesta);
 		}
 	});
 }
 
 function prueba(){
 	console.log("prueba");
+}
+
+function procesaProductos(respuesta){
+	if(respuesta != "error"){
+		var res = jQuery.parseJSON(respuesta);
+		document.getElementById("idProductoDestacados").innerHTML = "";
+		for (var i=0; i<res.length; i++) {
+			var fila = res[i];
+			var row="<div class='col-sm-4'>";
+			row +="<div class='product-image-wrapper'>";
+			row +="<div class='single-products'>";
+			row +="<div class='productinfo text-center'>";
+			row += "<img src='"+((fila[4]!="")?fila[4]:"./images/404/404.png")+"' alt='"+fila[2]+"' />";
+			row+="<h2>"+fila[1]+"€</h2>";
+			row+="<p>"+fila[3]+"</p>";
+			row+="<a href='#'' class='btn btn-default add-to-cart'><i class='fa fa-shopping-cart'></i>Añadir a la cesta</a>";
+			row+="</div>";
+			row+="<div class='product-overlay'>";
+			row+="<div class='overlay-content'>";
+			row += fila[2];
+			row+="<h2>"+fila[1]+"€</h2>";
+			row+="<p>"+fila[3]+"</p>";
+			row+="<a href='#'' class='btn btn-default add-to-cart'><i class='fa fa-shopping-cart'></i>Añadir a la cesta</a>";
+			row+="</div>";
+			row+="</div>";
+			row+="</div>";
+			row+="</div>";
+			row+="</div>";
+
+			document.getElementById("idProductoDestacados").innerHTML += row;
+		}
+	}
 }
